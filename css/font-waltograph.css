@@ -1,0 +1,33 @@
+/* DISNEY WALTOGRAPH FONT*/
+
+@font-face {
+    font-family: 'WaltographRegular';
+	src: url('/fonts/waltograph.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'WaltographUIBold';
+	src: url('../fonts/waltographUI.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal; 
+}
+
+ /* The following rules are deprecated. */ 
+
+@font-face {
+    font-family: 'Waltograph';
+	src: url('../fonts/waltograph.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+      }
+
+
+
+@font-face {
+    font-family: 'Waltograph UI';
+	src: url('../fonts/waltographUI.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
