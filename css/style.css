@@ -2072,7 +2072,7 @@ a:focus {
     background: url("../images/footer-bg.jpg") center center/cover no-repeat local;
     text-align: center;
     color: #fff;
-    padding: 160px 0;
+    padding: 220px;
     position: relative;
 }
 
@@ -2106,13 +2106,12 @@ a:focus {
 
 .site-footer h2 {
     font-family: "Great Vibes", cursive;
-    font-size: 67px;
-    font-size: 3.72222rem;
+    font-size: 50px;
+
     color: #fff;
     margin: 0 0 0.3em;
     padding: 0 250px;
-    text-transform: capitalize;
-    letter-spacing: 5px;
+    letter-spacing: 3px;
 }
 
 @media (max-width: 1199px) {
