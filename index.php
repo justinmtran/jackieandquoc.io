@@ -305,7 +305,7 @@
                                         <span class="date">Aug 14 2010</span>
                                         <p>
 											Our first date was a typical first date: dinner and a movie.  
-											I don’t remember where we went out to dinner, but I do remember the movie we watched, Dinner for Schmucks.  
+											I don't remember where we went out to dinner, but I do remember the movie we watched, Dinner for Schmucks.  
 											He first asked me to be his girlfriend after a fun-filled day in Monterey Bay.  
 											We had gone on a couple of dates already and so I kind of knew he was going to ask me to be his girlfriend that day, 
 											especially since we were going out of town. 
@@ -329,7 +329,7 @@
 											I started to see him go down on one knee.  I immediately said, “Shut up! You’re such a liar!”.  
 											But he was serious.  He asked me to marry him and I started crying while nodding my head yes since I couldn’t get the words out. 
 											People around us were clapping and congratulating us on our engagement.  
-											Our photographer helped us take some extra special photos by Snow White’s wishing well and it was truly a special moment for us.  
+											Our photographer helped us take some extra special photos by Snow White's wishing well and it was truly a special moment for us.  
 										</p>
                                     </div>
                                 </div>
