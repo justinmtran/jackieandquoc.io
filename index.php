@@ -180,7 +180,7 @@
 										Nguyen was also the first of his house to become grand maester of Government and Public Service.
 										He's an admirer and former participant of the fighting ball pits. 
 										His favorite ball pit team is the Sacramento Kings, and
-										in his spare time, he dabbles in sword-fighting, emancipation and incineration.
+										in his spare time, he enjoys being tear gased, tased and pepper sprayed.
                                         <!--
 										Quoc is the third oldest out of his eleven siblings. 
 										He was the first in his family to graduate with an associate degree in Government and Public Service.
@@ -305,7 +305,7 @@
                                         <span class="date">Aug 14 2010</span>
                                         <p>
 											Our first date was a typical first date: dinner and a movie.  
-											I don't remember where we went out to dinner, but I do remember the movie we watched, Dinner for Schmucks.  
+											I don’t remember where we went out to dinner, but I do remember the movie we watched, Dinner for Schmucks.  
 											He first asked me to be his girlfriend after a fun-filled day in Monterey Bay.  
 											We had gone on a couple of dates already and so I kind of knew he was going to ask me to be his girlfriend that day, 
 											especially since we were going out of town. 
@@ -329,7 +329,7 @@
 											I started to see him go down on one knee.  I immediately said, “Shut up! You’re such a liar!”.  
 											But he was serious.  He asked me to marry him and I started crying while nodding my head yes since I couldn’t get the words out. 
 											People around us were clapping and congratulating us on our engagement.  
-											Our photographer helped us take some extra special photos by Snow White's wishing well and it was truly a special moment for us.  
+											Our photographer helped us take some extra special photos by Snow White’s wishing well and it was truly a special moment for us.  
 										</p>
                                     </div>
                                 </div>
