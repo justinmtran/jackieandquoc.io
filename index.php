@@ -2,6 +2,22 @@
 <html lang="en">
 
 <head>
+	<?php
+		require_once "config.php";
+		
+		$servername = SERVER_NAME; 
+		$username = USER_NAME; 
+		$password = PASSWORD; 
+		$dbname = DATABASE_NAME; 
+		
+		// create connection 
+		$conn = new mysqli($servername, $username, $password, $dbname); 
+	
+		// check connection
+		if($conn->connect_error){
+			die("Connection failed"); 
+		}
+	?>
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -158,17 +174,26 @@
                                 <div class="details-inner">
                                     <h3>The groom</h3>
                                     <p>
+                                        
+										Quoc Nugyen, the third eldest, the first of his name, breaker of tears and wearer of nike apparel.
+										He currently serves as a loyal squire under house Sac Sheriff. 
+										Nguyen was also the first of his house to become grand maester of Government and Public Service.
+										He's an admirer and former participant of the fighting ball pits. 
+										His favorite ball pit team is the Sacramento Kings, and
+										in his spare time, he dabbles in sword-fighting, emancipation and incineration.
+                                        <!--
 										Quoc is the third oldest out of his eleven siblings. 
 										He was the first in his family to graduate with an associate degree in Government and Public Service.
 										He loves to watch and play a variety of sports (espcically basketball).
 										His favorite basketball team is the Sacramento Kings, and
 										in his spare time, he likes to play basketball, video games, and exercise.
+										-->
 									</p>
                                     <span class="signature">Quoc</span>
                                     <ul class="social-links">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://www.facebook.com/quockey"><i class="fa fa-facebook"></i></a></li>
                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="https://www.instagram.com/quockey/"><i class="fa fa-instagram"></i></a></li>
                                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
@@ -187,9 +212,9 @@
 									</p>
                                     <span class="signature">Jackie</span>
                                     <ul class="social-links">
-                                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                        <li><a href="https://www.facebook.com/xjaybaby"><i class="fa fa-facebook"></i></a></li>
                                         <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                                        <li><a href="https://www.instagram.com/__jaynh/"><i class="fa fa-instagram"></i></a></li>
                                         <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
@@ -248,7 +273,7 @@
                                 <div class="col col-md-6">
                                     <div class="story-text right-align-text">
                                         <h3>First met</h3>
-                                        <span class="date">Aug 10 2007</span>
+                                        <span class="date">Aug 2007</span>
                                         <p>
 											We first met in high school.  He was a senior and I was a sophomore.  
 											We were both after school one day.  
@@ -277,7 +302,7 @@
                                     </span>
                                     <div class="story-text">
                                         <h3>First date</h3>
-                                        <span class="date">Oct 14 2010</span>
+                                        <span class="date">Aug 14 2010</span>
                                         <p>
 											Our first date was a typical first date: dinner and a movie.  
 											I don’t remember where we went out to dinner, but I do remember the movie we watched, Dinner for Schmucks.  
@@ -297,7 +322,7 @@
                                     </span>
                                     <div class="story-text right-align-text">
                                         <h3>Proposal</h3>
-                                        <span class="date">Oct 20 2018</span>
+                                        <span class="date">Aug 20 2018</span>
                                         <p>
 											Eight years later, he finally proposed.  I honestly thought it was never going to happen since I kept dropping hints and he never did anything with them.
 											During our trip to Disneyland, Quoc asked a photographer to take photos in front the Disney castle, and in the corner of my eye, 
@@ -382,6 +407,7 @@
                                 <h3>Wedding Ceremony</h3>
                                 <ul>
                                     <li><i class="fa fa-map-marker"></i>1150 Magic Way, Anaheim, CA 92802</li>
+									<li><i class="fa fa-building"></i>Rose Court Garden at Disneyland Hotel</li>                                    
                                     <li><i class="fa fa-clock-o"></i> Oct 10 2020, 11:30AM - 12PM</li>
                                 </ul>
                                 <a class="see-location-btn popup-gmaps" href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3315.0989650037714!2d-117.92926548469721!3d33.80975908067274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80dd2828435001e9%3A0x88f2b71361443db0!2s1150+Magic+Way%2C+Anaheim%2C+CA+92802!5e0!3m2!1sen!2sus!4v1559703738171!5m2!1sen!2sus">
@@ -472,6 +498,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+											<ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>	
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -500,6 +529,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+                                            <ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>											
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -514,6 +546,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+                                            <ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>											
                                         </div>
                                     </div>
                                 </div>
@@ -531,6 +566,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+											<ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>	
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -545,6 +583,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+											<ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>	
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -559,6 +600,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+											<ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>	
                                         </div>
                                     </div>
                                     <div class="grid">
@@ -573,6 +617,9 @@
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
+											<ul class="social-links">
+                                                <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+                                            </ul>	
                                         </div>
                                     </div>
                                 </div>
@@ -702,30 +749,55 @@
 								<div class="col col-sm-6">
 									<input type="email" name="email" class="form-control" placeholder="Your Email*">
 								</div>
-								<div class="col col-sm-6">
-									<select class="form-control" name="guest">
-										<option disabled selected>Number Of Guest*</option>
-										<option>1</option>
-										<option>2</option>
-										<option>3</option>
-										<option>4</option>
-										<option>5</option>
-										<option>6</option>
-										<option>7</option>
-										<option>8</option>
-										<option>9</option>
-									</select>
+								<div class="col col-sm-2">
+									<input type="text" name="areacode" maxlength="3" class="form-control" placeholder="Area Code*">
+								</div>
+								<div class="col col-sm-4">
+									<input type="text" name="phonenum1" class="form-control" placeholder="Your Phone Number*">
 								</div>
 								<div class="col col-sm-6">
-									<select class="form-control" name="events">
-										<option disabled selected>I Am Attending*</option>
-										<option>All events</option>
-										<option>Wedding ceremony</option>
-										<option>Reception party</option>
+								    <select class="form-control" name="relationship">
+									<?php
+										$query = "SELECT REL.RelationshipId, REL.Description 
+									                FROM Relationship AS REL
+									                INNER JOIN RelationshipType AS RELTYPE ON RELTYPE.RelationshipTypeId = REL.RelationshipTypeId 
+									                WHERE RELTYPE.Description = 'Attendee'";
+										$result = mysqli_query($conn, $query); 
+										
+									    echo "<option disabled selected>Your Relationship to Couple*</option>"; 
+										while($row = mysqli_fetch_array($result)){
+											echo "<option value='" . $row["RelationshipId"] . "'>" . $row["Description"] . "</option>";
+										 }
+									?>
+									</select>
+								</div>								
+								<div class="col col-sm-6">
+									<?php
+										$MAX_NUM_GUESTS = 9; 
+										echo "<select class='form-control' name='numofguest'>";
+										echo "<option value='0' disabled selected>Number Of Guest*</option>";
+										
+										for($i = 1; $i <= $MAX_NUM_GUESTS; $i++){
+											echo "<option>" . $i . "</option>"; 
+										}
+										echo "</select>";
+									?>
+								</div>
+								<div class="col col-sm-6">
+									<select class="form-control" name="attendstatus">
+										<?php
+											$query = "SELECT AttendingStatusId, Description FROM AttendingStatus";
+											$result = mysqli_query($conn, $query); 
+											
+											echo "<option disabled selected>Are you attending? *</option>"; 
+											while($row = mysqli_fetch_array($result)){
+												echo "<option value='" . $row["AttendingStatusId"] . "'>" . $row["Description"] . "</option>";
+											 }
+										?>
 									</select>
 								</div>
 								<div class="col col-sm-12">
-									<textarea class="form-control" name="notes" placeholder="Your Message*"></textarea>
+									<textarea class="form-control" name="message" placeholder="Your Message*"></textarea>
 								</div>
 								<div class="col col-sm-12 submit-btn">
 									<button type="submit" class="submit">Confirm</button>
@@ -868,3 +940,6 @@
 </body>
 
 </html>
+<?php 
+	$conn->close(); 
+?>
