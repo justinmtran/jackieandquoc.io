@@ -3,20 +3,8 @@
 
 <head>
 	<?php
-		require_once "config.php";
-		
-		$servername = SERVER_NAME; 
-		$username = USER_NAME; 
-		$password = PASSWORD; 
-		$dbname = DATABASE_NAME; 
-		
-		// create connection 
-		$conn = new mysqli($servername, $username, $password, $dbname); 
-	
-		// check connection
-		if($conn->connect_error){
-			die("Connection failed"); 
-		}
+		require "config.php"; 
+		require "modules.php";
 	?>
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -741,60 +729,40 @@
 							Please note that any plus ones are subject to approval by the bride and groom. 
 							You will be notified via email on the status of your plus one.  
 						</p>
-                        <form id="rsvp-form" class="form validate-rsvp-form row" method="post">
+                        <form action="display.php" id="rsvp-form" class="form validate-rsvp-form row" method="post">
 							<div>
-								<div class="col col-sm-6">
-									<input type="text" name="name" class="form-control" placeholder="Your Name*">
-								</div>
-								<div class="col col-sm-6">
-									<input type="email" name="email" class="form-control" placeholder="Your Email*">
+								<div class="col col-sm-3">
+									<input type="text" name="first" class="form-control" placeholder="First Name*">
 								</div>
 								<div class="col col-sm-2">
-									<input type="text" name="areacode" maxlength="3" class="form-control" placeholder="Area Code*">
+									<input type="text" name="middle" class="form-control" placeholder="Middle">
+								</div>
+								<div class="col col-sm-3">
+									<input type="text" name="last" class="form-control" placeholder="Last Name*">
 								</div>
 								<div class="col col-sm-4">
-									<input type="text" name="phonenum1" class="form-control" placeholder="Your Phone Number*">
+									<input type="email" name="email" class="form-control" placeholder="Email">
 								</div>
+								<div class="col col-sm-2">
+									<input type="text" name="areacode" maxlength="3" class="form-control" placeholder="Area code*">
+								</div>
+								<div class="col col-sm-4">
+									<input type="text" name="phonenum1" class="form-control" placeholder="Phone Number*">
+								</div>					
 								<div class="col col-sm-6">
-								    <select class="form-control" name="relationship">
 									<?php
-										$query = "SELECT REL.RelationshipId, REL.Description 
-									                FROM Relationship AS REL
-									                INNER JOIN RelationshipType AS RELTYPE ON RELTYPE.RelationshipTypeId = REL.RelationshipTypeId 
-									                WHERE RELTYPE.Description = 'Attendee'";
-										$result = mysqli_query($conn, $query); 
-										
-									    echo "<option disabled selected>Your Relationship to Couple*</option>"; 
-										while($row = mysqli_fetch_array($result)){
-											echo "<option value='" . $row["RelationshipId"] . "'>" . $row["Description"] . "</option>";
-										 }
+										getRelationDropdown(); 
 									?>
-									</select>
 								</div>								
 								<div class="col col-sm-6">
 									<?php
-										$MAX_NUM_GUESTS = 9; 
-										echo "<select class='form-control' name='numofguest'>";
-										echo "<option value='0' disabled selected>Number Of Guest*</option>";
-										
-										for($i = 1; $i <= $MAX_NUM_GUESTS; $i++){
-											echo "<option>" . $i . "</option>"; 
-										}
-										echo "</select>";
+										getNumOfGuestsDropdown(); 
 									?>
 								</div>
 								<div class="col col-sm-6">
-									<select class="form-control" name="attendstatus">
-										<?php
-											$query = "SELECT AttendingStatusId, Description FROM AttendingStatus";
-											$result = mysqli_query($conn, $query); 
-											
-											echo "<option disabled selected>Are you attending? *</option>"; 
-											while($row = mysqli_fetch_array($result)){
-												echo "<option value='" . $row["AttendingStatusId"] . "'>" . $row["Description"] . "</option>";
-											 }
-										?>
-									</select>
+									<?php
+										getAttendingStatusDropdown(); 
+									?>
 								</div>
 								<div class="col col-sm-12">
 									<textarea class="form-control" name="message" placeholder="Your Message*"></textarea>
@@ -808,8 +776,8 @@
 									<div id="error"> Error occurred while sending email. Please try again later. </div>
 								</div>
 							</div> 
-
                         </form>
+
                     </div>
                 </div>
                 <!-- end row -->
@@ -940,6 +908,3 @@
 </body>
 
 </html>
-<?php 
-	$conn->close(); 
-?>
