@@ -3,8 +3,8 @@
 
 <head>
 	<?php
-		require "config.php"; 
-		require "modules.php";
+		require_once "config.php"; 
+		require_once "modules.php";
 	?>
     <!-- Meta Tags -->
     <meta charset="utf-8">
@@ -727,29 +727,26 @@
 							<!-- Please reserve before May 5th, 2020. Your passcode will be provided on your physical invitation.  -->
 							<!-- If you forgot/lost your passcode, please contact us for a new one.  -->
 							Please note that any plus ones are subject to approval by the bride and groom. 
-							You will be notified via email on the status of your plus one.  
+							You will be notified via email or text on the status of your plus one.  
 						</p>
-                        <form action="display.php" id="rsvp-form" class="form validate-rsvp-form row" method="post">
+                        <form id="rsvp-form" class="form validate-rsvp-form row" method="post">
 							<div>
-								<div class="col col-sm-3">
+								<div class="col col-sm-4">
 									<input type="text" name="first" class="form-control" placeholder="First Name*">
 								</div>
-								<div class="col col-sm-2">
-									<input type="text" name="middle" class="form-control" placeholder="Middle">
+								<div class="col col-sm-4">
+									<input type="text" name="middle" class="form-control" placeholder="Middle Name">
 								</div>
-								<div class="col col-sm-3">
+								<div class="col col-sm-4">
 									<input type="text" name="last" class="form-control" placeholder="Last Name*">
 								</div>
 								<div class="col col-sm-4">
 									<input type="email" name="email" class="form-control" placeholder="Email">
 								</div>
-								<div class="col col-sm-2">
-									<input type="text" name="areacode" maxlength="3" class="form-control" placeholder="Area code*">
-								</div>
 								<div class="col col-sm-4">
-									<input type="text" name="phonenum1" class="form-control" placeholder="Phone Number*">
+									<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="Phone Number*">
 								</div>					
-								<div class="col col-sm-6">
+								<div class="col col-sm-4">
 									<?php
 										getRelationDropdown(); 
 									?>

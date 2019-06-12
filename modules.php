@@ -78,4 +78,66 @@
 		}
 		echo "</select>";		
 	}
+	
+	// function addAttendeeInfo($first, $middle, $last, $phone, $email){
+		// $conn = createConnection();  
+	
+		// $attendeeInfoId = 0; 
+	
+		// $call = mysqli_prepare($conn, "CALL AddAttendeeInformation(?,?,?,?,?, @attendeeInfoId)"); 
+		// mysqli_stmt_bind_param($call, "sssis", $first, $middle, $last, $phone, $email);  
+		// mysqli_stmt_execute($call); 
+
+		// $select = mysqli_query($conn, "SELECT @attendeeInfoId"); 
+		// $result = mysqli_fetch_assoc($select); 
+
+		// $attendeeInfoId = $result["@attendeeInfoId"]; 
+
+		// $conn->close(); 
+		
+		// return $attendeeInfoId; 
+	// }
+	
+	function addAttendee($first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests){
+		try{
+			$conn = createConnection();  
+
+			$attendeeId = 0; 
+
+			$call = mysqli_prepare($conn, "CALL AddAttendee(?,?,?,?,?,?,?,?,?, @attendeeId)"); 
+			mysqli_stmt_bind_param($call, "sssisiisi", $first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests);  
+			mysqli_stmt_execute($call); 
+
+			$select = mysqli_query($conn, "SELECT @attendeeId"); 
+			$result = mysqli_fetch_assoc($select); 
+
+			$attendeeId = $result["@attendeeId"]; 
+
+			$conn->close(); 
+			
+			return $attendeeId; 			
+		}
+		catch (Exception $ex){
+			if($conn != null)
+				$conn->close(); 
+		}
+
+	}
+	
+	function createRSVP($attendeeId){
+		try{
+			$conn = createConnection();  
+
+			$call = mysqli_prepare($conn, "CALL CreateRSVP(?)"); 
+			mysqli_stmt_bind_param($call, "i", $attendeeId);  
+			mysqli_stmt_execute($call); 
+
+			$conn->close();			
+		}
+		catch(Exception $ex){
+			if($conn != null)
+				$conn->close(); 
+		}
+ 	
+	}
 ?>

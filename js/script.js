@@ -12,7 +12,6 @@
         return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1], 10) : false;
     }
 
-
     // Toggle mobile navigation
     function toggleMobileNavigation() {
         var navbar = $(".navigation-holder");
@@ -217,8 +216,6 @@
         saveTheDateCircle.addClass("popup-save-the-date");
     }
 
-
-
     /*------------------------------------------
         = HIDE PRELOADER
     -------------------------------------------*/
@@ -240,7 +237,6 @@
         }
     }
 
-
     /*------------------------------------------
         = WOW ANIMATION SETTING
     -------------------------------------------*/
@@ -252,7 +248,6 @@
         live: true // default
     });
 
-
     /*------------------------------------------
         = ACTIVE POPUP GALLERY
     -------------------------------------------*/
@@ -263,7 +258,6 @@
             wrapCSS: "project-fancybox-title-style"
         });
     }
-
 
     /*------------------------------------------
         = POPUP VIDEO
@@ -528,56 +522,67 @@
     /*------------------------------------------
         = RSVP FORM SUBMISSION
     -------------------------------------------*/
-    if ($("#rsvp-form").length) {
+    if ($("#rsvp-form").length){ 
         $("#rsvp-form").validate({
             rules: {
-                name: {
+                first: {
                     required: true,
                     minlength: 2
                 },
-                email: "required",
-
-                guest: {
-                    required: true
+				last: {
+                    required: true,
+                    minlength: 2
                 },
-
-                events: {
-                    required: true
-                }
-
+                numofguest: {
+					required: true
+				},
+				attendstatus:  {
+					required: true
+				},
+				relationship:  {
+					required: true
+				},
+				phone: {
+					required: true,
+					minlength: 10,
+					maxlength: 10
+				}
             },
 
             messages: {
-                name: "Please enter your name",
-                email: "Please enter your email",
-                guest: "Select your number of guest",
-                events: "Select your event list"
+                first: "Please enter your first name",
+                last: "Please enter your last name",				
+                numofguest: "Select your number of guest",
+				attendstatus: "Are you attending?", 
+				relationship: "Select your relationship to the couple",
+				phone: "Please enter a 10-digit phone number"
             },
 
-            // submitHandler: function(form) {
-                // $("#loader").css("display", "inline-block");
-                // $.ajax({
-                    // type: "POST",
-                    // url: "mail.php",
-                    // data: $(form).serialize(),
-                    // success: function() {
-                        // $("#loader").hide();
-                        // $("#success").slideDown("slow");
-                        // setTimeout(function() {
-                            // $("#success").slideUp("slow");
-                        // }, 3000);
-                        // form.reset();
-                    // },
-                    // error: function() {
-                        // $("#loader").hide();
-                        // $("#error").slideDown("slow");
-                        // setTimeout(function() {
-                            // $("#error").slideUp("slow");
-                        // }, 3000);
-                    // }
-                // });
-                // return false; // required to block normal submit since you used ajax
-            // }
+            submithandler: function(form) {
+                $("#loader").css("display", "inline-block");
+                $.ajax({
+                    type: "post",
+                    url: "submit.php",
+                    data: $(form).serialize(),
+                    success: function() {
+                        $("#loader").hide();
+                        $("#success").slidedown("slow");
+                        settimeout(function() {
+                            $("#success").slideup("slow");
+                        }, 3000);
+                        form.reset();
+                    },
+                    error: function() {
+                        $("#loader").hide();
+                        $("#error").slidedown("slow");
+                        settimeout(function() {
+                            $("#error").slideup("slow");
+                        }, 3000);
+                    }
+                });
+				
+                return false; // required to block normal submit since you used ajax
+            }
 
         });
     }
