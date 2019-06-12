@@ -99,7 +99,6 @@
 	// }
 	
 	function addAttendee($first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests){
-		try{
 			$conn = createConnection();  
 
 			$attendeeId = 0; 
@@ -114,30 +113,17 @@
 			$attendeeId = $result["@attendeeId"]; 
 
 			$conn->close(); 
-			
-			return $attendeeId; 			
-		}
-		catch (Exception $ex){
-			if($conn != null)
-				$conn->close(); 
-		}
 
+			return $attendeeId; 			
 	}
 	
-	function createRSVP($attendeeId){
-		try{
-			$conn = createConnection();  
+	function createRSVP($attendeeId){		
+		$conn = createConnection();  
 
-			$call = mysqli_prepare($conn, "CALL CreateRSVP(?)"); 
-			mysqli_stmt_bind_param($call, "i", $attendeeId);  
-			mysqli_stmt_execute($call); 
+		$call = mysqli_prepare($conn, "CALL CreateRSVP(?)"); 
+		mysqli_stmt_bind_param($call, "i", $attendeeId);  
+		mysqli_stmt_execute($call); 
 
-			$conn->close();			
-		}
-		catch(Exception $ex){
-			if($conn != null)
-				$conn->close(); 
-		}
- 	
+		$conn->close();			
 	}
 ?>
