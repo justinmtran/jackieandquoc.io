@@ -558,31 +558,32 @@
 				phone: "Please enter a 10-digit phone number"
             },
 
-            // submitHandler: function(form) {
-                // $("#loader").css("display", "inline-block");
-                // $.ajax({
-                    // type: "post",
-                    // url: "submit.php",
-                    // data: $(form).serialize(),
-                    // success: function() {
-                        // $("#loader").hide();
-                        // $("#success").slideDown("slow");
-                        // settimeout(function() {
-                            // $("#success").slideUp("slow");
-                        // }, 3000);
-                        // form.reset();
-                    // },
-                    // error: function(jqXHR, textStatus, errorThrown) {
-                        // $("#loader").hide();
-                        // $("#error").slideDown("slow");
-                        // settimeout(function() {
-                            // $("#error").slideUp("slow");
-                        // }, 3000);
-                    // }
-                // });
+            submitHandler: function(form) {
+                $("#loader").css("display", "inline-block");
+                $.ajax({
+                    type: "post",
+                    url: "submit.php",
+                    data: $(form).serialize(),
+                    success: function() {
+                        $("#loader").hide();
+                        $("#success").slideDown("slow");
+                        setTimeout(function() {
+                            $("#success").slideUp("slow");
+                        }, 3000);
+                        document.getElementById("rsvp-form").reset(); 
+						form.reset();					
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $("#loader").hide();
+                        $("#error").slideDown("slow");
+                        setTimeout(function() {
+                            $("#error").slideUp("slow");
+                        }, 3000);
+                    }
+                });
 				
-                // return false; // required to block normal submit since you used ajax
-            // }
+                return false; // required to block normal submit since you used ajax
+            }
 
         });
     }

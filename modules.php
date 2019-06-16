@@ -15,6 +15,8 @@
 		global $password; 
 		global $dbname;
 		
+		
+		error_log("creating connection"); 
 		// create connection 
 		$conn = new mysqli($servername, $username, $password, $dbname); 
 
@@ -23,6 +25,7 @@
 			die("Connection failed"); 
 		}
 		else{
+			error_log("connection successful"); 
 			return $conn; 
 		}
 	}
@@ -99,6 +102,9 @@
 	// }
 	
 	function addAttendee($first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests){
+		error_log("adding attendee " . $first . "to the database"); 	
+		
+		try{
 			$conn = createConnection();  
 
 			$attendeeId = 0; 
@@ -113,17 +119,28 @@
 			$attendeeId = $result["@attendeeId"]; 
 
 			$conn->close(); 
+			
+			error_log("completed adding attendee " . $first . "to the database"); 
 
 			return $attendeeId; 			
+		}catch(Exception $e){
+			error_log("caught exception: " . $e->getMessage()); 
+		}
+		
+			
 	}
 	
-	function createRSVP($attendeeId){		
+	function createRSVP($attendeeId){	
+		error_log("creating RSVP for attendee no. " . $attendeeId); 
+		
 		$conn = createConnection();  
 
 		$call = mysqli_prepare($conn, "CALL CreateRSVP(?)"); 
 		mysqli_stmt_bind_param($call, "i", $attendeeId);  
 		mysqli_stmt_execute($call); 
 
-		$conn->close();			
+		$conn->close();		
+		
+		error_log("completed RSVP for attendee no. " . $attendeeId); 		
 	}
 ?>
