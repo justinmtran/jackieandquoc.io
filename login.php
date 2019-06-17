@@ -92,7 +92,9 @@
                             <span class=" wow fadeInUp" data-wow-delay="1.55s">i</span>
                             <span class=" wow fadeInUp" data-wow-delay="1.65s">n</span>
                         </h4> <br /> <br />
-						<div class="fb-login-button" data-width="" data-size="large" data-button-type="continue_with" data-auto-logout-link="false" data-use-continue-as="false" />
+						<?php
+							echo "<a class='fa fa-facebook' href='" . htmlspecialchars($loginUrl) . "'> Log in with Facebook!</a></button>";
+						?>
                     </div>
                 </div>
             </div>
@@ -102,7 +104,7 @@
         <!-- Start header -->
         <header id="header" class="site-header header-style-1">
 			<div class="container" align="center">
-				<h1><a href="#home">J <i class="fi flaticon-shape-1"></i> Q</a></h1>
+				<h1><a href="https://www.jandqsayido.com">J <i class="fi flaticon-shape-1"></i> Q</a></h1>
 				<!-- end of nav-collapse -->
 			</div>
 			<!-- end of container -->
