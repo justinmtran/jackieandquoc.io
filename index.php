@@ -866,7 +866,7 @@
                 <!-- end row -->
             </div>
             <!-- end container -->
-			<div style="width:200px;margin:0 auto;"><a href="http://www.honeyfund.com/wedding/soHAppyforquocandjackie" style="text-align:left;background:url('http://www.honeyfund.com/share/honeyfund3.png') no-repeat;display:block;width:200px;height:100px;text-indent:-9999em;">Visit our honeyfund at Honeyfund.com, the free honeymoon registry</a></div>
+			<div style="width:200px;margin:0 auto;"><a href="http://www.honeyfund.com/wedding/soHAppyforquocandjackie" style="text-align:left;background:url('https://www.honeyfund.com/share/honeyfund3.png') no-repeat;display:block;width:200px;height:100px;text-indent:-9999em;">Visit our honeyfund at Honeyfund.com, the free honeymoon registry</a></div>
         </section>
         <!-- end gift-registration-section -->
 
