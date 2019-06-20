@@ -71,7 +71,7 @@
 		echo "<select class='form-control' name='numofguest'>";
 		echo "<option value='0' disabled selected>Number Of Guest*</option>";
 		
-		for($i = 1; $i <= $MAX_NUM_GUESTS; $i++){
+		for($i = 0; $i <= $MAX_NUM_GUESTS; $i++){
 			if($i < 2){
 				echo "<option>" . $i . " Guest</option>"; 
 			}
