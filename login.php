@@ -5,14 +5,12 @@
 
 	<?php
 		require_once 'Facebook/autoload.php';
-
 		session_start();
 		$fb = new Facebook\Facebook([
 		  'app_id' => '909515306050412', 
 		  'app_secret' => '4d5fa8ed513b69eddb1144e115cb1322',
 		  'default_graph_version' => 'v3.2',
 		  ]);
-
 		$helper = $fb->getRedirectLoginHelper();
 		
 		$permissions = ['email']; // Optional permissions
@@ -54,64 +52,49 @@
 </head>
 
 <body>
-    <!-- start page-wrapper -->
-    <div class="page-wrapper">
+	<!-- start preloader -->
+	<div class="preloader">
+		<div class="inner">
+			<span class="icon"><i class="fi flaticon-two"></i></span>
+		</div>
+	</div>
+	<!-- end preloader -->
 
-        <!-- start preloader -->
-        <div class="preloader">
-            <div class="inner">
-                <span class="icon"><i class="fi flaticon-two"></i></span>
-            </div>
-        </div>
-        <!-- end preloader -->
-
-        <!-- start of hero -->
-        <section class="hero">
-            <div class="hero-slider hero-slider-s1">
-                <div class="slide-item">
-                    <img src="images/slider/login.jpg" alt class="slider-bg">
-                </div>
-            </div>
-            <div class="wedding-announcement">
-                <div class="couple-name-merried-text">
-                    <h2 class="wow slideInUp" data-wow-duration="1s">Welcome to the Admin Control</h2>
-                    <div class="married-text wow fadeIn" data-wow-delay="1s">
-                        <h4 class="">
-                            <span class=" wow fadeInUp" data-wow-delay="1.05s">P</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.10s">l</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.15s">e</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.20s">a</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.25s">s</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.30s">e</span>
-                            <span>&nbsp;</span>						
-                            <span class=" wow fadeInUp" data-wow-delay="1.35s">S</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.40s">i</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.45s">g</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.50s">n</span>
-                            <span>&nbsp;</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.55s">i</span>
-                            <span class=" wow fadeInUp" data-wow-delay="1.65s">n</span>
-                        </h4> <br /> <br />
-						<?php
-							echo "<a class='fa fa-facebook' href='" . htmlspecialchars($loginUrl) . "'> Log in with Facebook!</a></button>";
-						?>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- end of hero slider -->
-
-        <!-- Start header -->
-        <header id="header" class="site-header header-style-1">
-			<div class="container" align="center">
-				<h1><a href="https://www.jandqsayido.com">J <i class="fi flaticon-shape-1"></i> Q</a></h1>
-				<!-- end of nav-collapse -->
+	<!-- start of hero -->
+	<div class="hero" style="height: 100%">
+		<div class="hero-slider hero-slider-s1">
+			<div class="slide-item">
+				<img src="images/slider/login.jpg" alt class="slider-bg">
 			</div>
-			<!-- end of container -->
-        </header>
-        <!-- end of header -->
-    </div>
-    <!-- end of page-wrapper -->
+		</div>
+		<div class="wedding-announcement text-center">
+			<div class="couple-name-merried-text">
+				<h2 class="wow slideInUp" data-wow-duration="1s">Welcome Jackie</h2>
+				<div class="married-text wow fadeIn" data-wow-delay="1s">
+					<h4 class="">
+						<span class=" wow fadeInUp" data-wow-delay="1.05s">P</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.10s">l</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.15s">e</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.20s">a</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.25s">s</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.30s">e</span>
+						<span>&nbsp;</span>						
+						<span class=" wow fadeInUp" data-wow-delay="1.35s">S</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.40s">i</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.45s">g</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.50s">n</span>
+						<span>&nbsp;</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.55s">i</span>
+						<span class=" wow fadeInUp" data-wow-delay="1.65s">n</span>
+					</h4> <br /> <br />
+					<?php
+						echo "<a class='fa fa-facebook btn btn-primary' href='" . htmlspecialchars($loginUrl) . "'> Log in with Facebook!</a></button>";
+					?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of hero slider -->
 
     <!-- All JavaScript files
     ================================================== -->
@@ -124,5 +107,3 @@
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>
 </body>
-
-</html>

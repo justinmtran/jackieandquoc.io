@@ -36,6 +36,16 @@
 			return $this->getData($limit, $page, $query); 
 		}
 		
+		public function getApprovedData($limit, $page){
+			$query = "SELECT * FROM ApprovedForms"; 
+			return $this->getData($limit, $page, $query); 
+		}
+		
+		public function getDeniedData($limit, $page){
+			$query = "SELECT * FROM DeniedForms"; 
+			return $this->getData($limit, $page, $query); 
+		}
+		
 		public function createLinks($links, $list_class){
 			if ( $this->_limit == 'all' ) {
 				return '';

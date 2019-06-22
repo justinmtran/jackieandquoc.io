@@ -49,6 +49,8 @@
 		$conn->close(); 
 	}
 	
+	function get
+	
 	function getAttendingStatusDropdown(){
 		$conn = createConnection(); 
 		
@@ -82,25 +84,6 @@
 		echo "</select>";		
 	}
 	
-	// function addAttendeeInfo($first, $middle, $last, $phone, $email){
-		// $conn = createConnection();  
-	
-		// $attendeeInfoId = 0; 
-	
-		// $call = mysqli_prepare($conn, "CALL AddAttendeeInformation(?,?,?,?,?, @attendeeInfoId)"); 
-		// mysqli_stmt_bind_param($call, "sssis", $first, $middle, $last, $phone, $email);  
-		// mysqli_stmt_execute($call); 
-
-		// $select = mysqli_query($conn, "SELECT @attendeeInfoId"); 
-		// $result = mysqli_fetch_assoc($select); 
-
-		// $attendeeInfoId = $result["@attendeeInfoId"]; 
-
-		// $conn->close(); 
-		
-		// return $attendeeInfoId; 
-	// }
-	
 	function addAttendee($first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests){
 		error_log("adding attendee " . $first . "to the database"); 	
 		
@@ -125,9 +108,7 @@
 			return $attendeeId; 			
 		}catch(Exception $e){
 			error_log("caught exception: " . $e->getMessage()); 
-		}
-		
-			
+		}	
 	}
 	
 	function createRSVP($attendeeId){	
@@ -141,6 +122,20 @@
 
 		$conn->close();		
 		
-		error_log("completed RSVP for attendee no. " . $attendeeId); 		
+		error_log("RSVP for attendee no. " . $attendeeId . " have been created."); 		
+	}
+	
+	function approveRSVP($formId){
+		error_log("approving RSVP for form no. " . $formId); 
+		
+		$conn = createConnection(); 
+		
+		$call = mysqli_prepare($conn, "CALL ApproveRSVP(?)"); 
+		mysqli_stmt_bind_param($call, "i", $formId);  
+		mysqli_stmt_execute($call); 
+		
+		$conn->close(); 
+		
+		error_log("RSVP for attendee no. " . $formId . " have been approved."); 		
 	}
 ?>
