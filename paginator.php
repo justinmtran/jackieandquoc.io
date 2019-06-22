@@ -13,10 +13,9 @@
 			$this->_page    = $page;
 		 
 			if ( $this->_limit != 'all' ) {
-				$query = $query . " LIMIT " . ( ( $this->_page - 1 ) * $this->_limit ) . "," . ($this->_limit*$this_page);
+				$query = $query . " LIMIT " . $this->_limit . " OFFSET " . ( ( $this->_page - 1 ) * $this->_limit );
 			}
-			
-			$rs = $this->_conn->query( $query );
+			$rs = $this->_conn->query($query);
 		 
 			while ( $row = $rs->fetch_assoc() ) {
 				$results[]  = $row;

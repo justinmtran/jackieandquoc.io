@@ -6,12 +6,14 @@
 	require 'config.php'; 
 	require 'modules.php'; 
 	
-	$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : array(10,10,10);
+	$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : array(10,10,10); // pending, approved, denied
     $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : array(1,1,1);
     $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : array(7,7,7);
 	
 	$conn = createConnection(); 
 	$Paginator = new Paginator($conn); 
+	
+	$results = $Paginator->getPendingData($limit[0], $page[0]);
 ?>
 
 <head>
@@ -85,7 +87,6 @@
 		<div class="tab-content">
 			<br />
 			<!-- PENDING TAB CONTENT --> 
-			<?php $results = $Paginator->getPendingData($limit[0], $page[0]); ?>
 			<div id="pending" class="tab-pane fade in active">
 				<div class="container">
 					<div class="row">
@@ -127,7 +128,7 @@
 								</tbody>
 								<?php endfor; ?>
 							</table>
-							<?php echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
+							<?php echo $Paginator->createLinks($links[0], 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>
@@ -174,7 +175,7 @@
 								</tbody>
 								<?php endfor; ?>
 							</table>
-							<?php echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
+							<?php echo $Paginator->createLinks($links[1], 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>

@@ -49,8 +49,6 @@
 		$conn->close(); 
 	}
 	
-	function get
-	
 	function getAttendingStatusDropdown(){
 		$conn = createConnection(); 
 		
