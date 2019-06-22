@@ -5,7 +5,7 @@
 		private $_total; 
 		
 		public function __construct($conn){
-			$this->conn = $conn; 
+			$this->_conn = $conn; 
 		}
 		
 		private function getData($limit = 10, $page = 1, $query){	
@@ -13,8 +13,9 @@
 			$this->_page    = $page;
 		 
 			if ( $this->_limit != 'all' ) {
-				$query = $query . " LIMIT " . $this->_limit . " OFFSET " . ( ( $this->_page - 1 ) * $this->_limit );
+				$query = $query . " LIMIT " . $this->_limit . " OFFSET " . ( ( $this->_page - 1 ) * $this->_limit ) . ";";
 			}
+		
 			$rs = $this->_conn->query($query);
 		 
 			while ( $row = $rs->fetch_assoc() ) {
