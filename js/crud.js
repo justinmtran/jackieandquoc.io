@@ -1,29 +1,41 @@
-$.ready(function(){
-	function approveForm(){
+function approveForm(id){
+	$.ajax({
+		type: "POST", 
+		url: "approve.php",
+		data: {formId: id},
+		success: function(){
+			location.reload(); 
+		}
+	});
+}
 
-	}
+function viewDetailsForms(){
 	
-	function viewDetailsForms(){
-		
-	}
+}
+
+function denyForm(){
+	$.ajax({
+		type: "POST", 
+		url: "deny.php",
+		data: {formId: id},
+		success: function(){
+			location.reload(); 
+		}
+	});
+}
+
+function editForm(){
 	
-	function denyForm(){
-		
-	}
+}
+
+function deleteForm(){
 	
-	function editForm(){
-		
-	}
+}
+
+function deleteGuests(){
 	
-	function deleteForm(){
-		
-	}
+}
+
+function notifyAtteneePlusOne(){
 	
-	function deleteGuests(){
-		
-	}
-	
-	function notifyAtteneePlusOne(){
-		
-	}
-});
+}

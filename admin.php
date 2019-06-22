@@ -6,14 +6,14 @@
 	require 'config.php'; 
 	require 'modules.php'; 
 	
-	$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : array(10,10,10); // pending, approved, denied
-    $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : array(1,1,1);
-    $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : array(7,7,7);
+	//$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 10; 
+    $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; 
+    $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 	
 	$conn = createConnection(); 
 	$Paginator = new Paginator($conn); 
 	
-	$results = $Paginator->getPendingData($limit[0], $page[0]);
+	$results = $Paginator->getPendingData('all', $page);
 ?>
 
 <head>
@@ -44,6 +44,18 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+	
+    <!-- All JavaScript files
+    ================================================== -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	<script src="js/crud.js"></script>
+
+    <!-- Plugins for this template -->
+    <script src="js/jquery-plugin-collection.js"></script>
+
+    <!-- Custom script for this template -->
+    <script src="js/script.js"></script>
 </head>
 
 <body>
@@ -115,27 +127,27 @@
 										<td><?php echo $results->data[$i]['LastName']; ?></td>
 										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
 										<td><?php echo $results->data[$i]['Email']; ?></td>
-										<td><?php echo $results->data[$i]['RelationshipType']; ?></td>
+										<td><?php echo $results->data[$i]['Relationship']; ?></td>
 										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
 											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a href="approve.php?id=<?php echo $results->data[$i]['FormId']; ?>" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
-											<a href="" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
 								</tbody>
 								<?php endfor; ?>
 							</table>
-							<?php echo $Paginator->createLinks($links[0], 'pagination pagination-sm'); ?>
+							<?php //echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- APPROVED TAB CONTENT --> 
 			<div id="approved" class="tab-pane fade">
-				<?php $results = $Paginator->getApprovedData($limit[1], $page[1]); ?>
+				<?php $results = $Paginator->getApprovedData('all', $page); ?>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -163,7 +175,7 @@
 										<td><?php echo $results->data[$i]['LastName']; ?></td>
 										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
 										<td><?php echo $results->data[$i]['Email']; ?></td>
-										<td><?php echo $results->data[$i]['RelationshipType']; ?></td>
+										<td><?php echo $results->data[$i]['Relationship']; ?></td>
 										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
@@ -175,36 +187,60 @@
 								</tbody>
 								<?php endfor; ?>
 							</table>
-							<?php echo $Paginator->createLinks($links[1], 'pagination pagination-sm'); ?>
+							<?php //echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>
 			</div>
 			<!-- DENIED TAB CONTENT --> 
 			<div id="denied" class="tab-pane fade">
+				<?php $results = $Paginator->getDeniedData('all', $page); ?>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<p>Coming Soon.</p>					
+							<table class="table table-striped table-condensed table-bordered table-rounded">
+								<thead>
+									<tr>
+										<th hidden>Form Id</th>
+										<th>First</th>
+										<th>Middle</th>
+										<th>Last</th>
+										<th>Phone</th>
+										<th>Email</th>
+										<th>Relationship</th>
+										<th>No. of Guests</th>
+										<th>Status</th>
+										<th></th> <!-- Action Column --> 
+									</tr>
+								</thead>
+								<tbody>
+								<?php for($i = 0; $i < count($results->data); $i++) : ?>
+									<tr>
+										<td hidden><?php echo $results->data[$i]['FormId']; ?></td>
+										<td><?php echo $results->data[$i]['FirstName']; ?></td>
+										<td><?php echo $results->data[$i]['MiddleName']; ?></td>
+										<td><?php echo $results->data[$i]['LastName']; ?></td>
+										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
+										<td><?php echo $results->data[$i]['Email']; ?></td>
+										<td><?php echo $results->data[$i]['Relationship']; ?></td>
+										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
+										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
+										<td>
+											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
+											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
+										</td>
+									</tr>
+								</tbody>
+								<?php endfor; ?>
+							</table>			
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
-		
-		
-    <!-- All JavaScript files
-    ================================================== -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- Plugins for this template -->
-    <script src="js/jquery-plugin-collection.js"></script>
-
-    <!-- Custom script for this template -->
-    <script src="js/script.js"></script>
 </body>
 
 </html>

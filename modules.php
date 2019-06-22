@@ -136,4 +136,18 @@
 		
 		error_log("RSVP for attendee no. " . $formId . " have been approved."); 		
 	}
+	
+	function denyRSVP($formId){
+		error_log("denying RSVP for form no. " . $formId); 
+		
+		$conn = createConnection(); 
+		
+		$call = mysqli_prepare($conn, "CALL DenyRSVP(?)"); 
+		mysqli_stmt_bind_param($call, "i", $formId);  
+		mysqli_stmt_execute($call); 
+		
+		$conn->close(); 
+		
+		error_log("RSVP for attendee no. " . $formId . " have been denied."); 		
+	}
 ?>
