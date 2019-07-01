@@ -9,11 +9,10 @@ function approveForm(id){
 	});
 }
 
-function viewDetailsForms(){
-	
+function viewGuests(id){
 }
 
-function denyForm(){
+function denyForm(id){
 	$.ajax({
 		type: "POST", 
 		url: "deny.php",
@@ -28,14 +27,36 @@ function editForm(){
 	
 }
 
-function deleteForm(){
+function deleteForm(id){
+	isDelete = "Are you sure you wish to delete this form?"
+	BootstrapDialog.confirm(isDelete, function(result){
+		if(result){
+			$.ajax({
+				type: "POST", 
+				url: "delete.php",
+				data: {formId: id},
+				success: function(){
+					location.reload(); 
+				}
+			});
+		}else{
+			return false; 
+		}
+	});
+}
+
+function deleteGuests(attendeeId){
 	
 }
 
-function deleteGuests(){
-	
-}
-
-function notifyAtteneePlusOne(){
-	
+function notifyAtteneePlusOne(email){
+	BootstrapDialog.show({
+		message: "The following message will be sent to " + email + ":" + "<textarea name='emailMessage' class='form-control'>",
+		buttons: [{
+			label: 'Send',
+			action: function() {
+				alert("Email Sent"); 
+			}
+		}]
+	});     
 }

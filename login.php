@@ -67,7 +67,7 @@
 				<img src="images/slider/login.jpg" alt class="slider-bg">
 			</div>
 		</div>
-		<div class="wedding-announcement text-center">
+		<div style class="wedding-announcement">
 			<div class="couple-name-merried-text">
 				<h2 class="wow slideInUp" data-wow-duration="1s">Welcome Jackie</h2>
 				<div class="married-text wow fadeIn" data-wow-delay="1s">

@@ -41,6 +41,7 @@
     <link href="css/owl.transitions.css" rel="stylesheet">
     <link href="css/jquery.fancybox.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
+	<link href="css/bootstrap-dialog.min.css rel="stylesheet"> 
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -49,16 +50,17 @@
     ================================================== -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+	<script src="js/bootstrap-dialog.min.js"></script>  
 	<script src="js/crud.js"></script>
-
+	
     <!-- Plugins for this template -->
-    <script src="js/jquery-plugin-collection.js"></script>
+    <script src="js/jquery-plugin-collection.js"></script
 
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>
 </head>
 
-<body>
+<body onload="setActiveTab()">
     <!-- start page-wrapper -->
     <div class="page-wrapper">
 
@@ -69,7 +71,7 @@
             </div>
         </div>
         <!-- end preloader -->
-
+		
         <!-- Start header -->
         <header id="header" class="site-header header-style-1">
 			<div class="container">
@@ -87,10 +89,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<ul class="nav nav-tabs">
-					  <li class="active"><a data-toggle="tab" href="#pending">Pending</a></li>
-					  <li><a data-toggle="tab" href="#approved">Approved</a></li>
-					  <li><a data-toggle="tab" href="#denied">Denied</a></li>
+					<ul id="tabs" class="nav nav-tabs">
+					  <li class="active" id="pending-tab" class="nav-item"><a data-toggle="tab" href="#pending">Pending</a></li>
+					  <li id="approved-tab" class="nav-item"><a data-toggle="tab" href="#approved">Approved</a></li>
+					  <li id="denied-tab" class="nav-item"><a data-toggle="tab" href="#denied">Denied</a></li>
 					</ul>
 				</div>
 			</div>
@@ -99,7 +101,7 @@
 		<div class="tab-content">
 			<br />
 			<!-- PENDING TAB CONTENT --> 
-			<div id="pending" class="tab-pane fade in active">
+			<div id="pending" class="tab-pane fade in active" aria-labelledby="pending-tab">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -146,7 +148,7 @@
 				</div>
 			</div>
 			<!-- APPROVED TAB CONTENT --> 
-			<div id="approved" class="tab-pane fade">
+			<div id="approved" class="tab-pane fade" aria-labelledby="approved-tab">
 				<?php $results = $Paginator->getApprovedData('all', $page); ?>
 				<div class="container">
 					<div class="row">
@@ -181,7 +183,7 @@
 										<td>
 											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a href="" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
 								</tbody>
@@ -193,12 +195,12 @@
 				</div>
 			</div>
 			<!-- DENIED TAB CONTENT --> 
-			<div id="denied" class="tab-pane fade">
+			<div id="denied" class="tab-pane fade" aria-labelledby="denied-tab">
 				<?php $results = $Paginator->getDeniedData('all', $page); ?>
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-striped table-condensed table-bordered table-rounded">
+							<table class="table table-striped table-condensed table-bordered table-rounded table-hover">
 								<thead>
 									<tr>
 										<th hidden>Form Id</th>
@@ -229,7 +231,7 @@
 											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
 											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
-											<a class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
+											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
 										</td>
 									</tr>
 								</tbody>

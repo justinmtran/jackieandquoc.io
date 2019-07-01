@@ -82,6 +82,20 @@
 		echo "</select>";		
 	}
 	
+	function getFormStatusDropdown($formId){
+		echo "<select class='form-control' name='formstatus'>";
+		$query = "SELECT FS.FormStatusId AS FormStatusId, Description FROM Form AS F INNER JOIN FormStatus AS FS ON FS.FormStatusId = F.FormStatusId WHERE F.FormId = " . $formId;
+		$result = mysqli_query($conn, $query); 
+		
+		while($row = mysqli_fetch_array($result)){
+			if($row["FormStatusId"] = $formStatusId)
+				echo "<option value='" . $row["FormStatusId"] . "' selected>" . $row["Description"] . "</option"; 
+			else 
+				echo "<option value='" . $row["FormStatusId"] . "'>" . $row["Description"] . "</option"; 
+		}
+	
+	}
+	
 	function addAttendee($first, $middle, $last, $phone, $email, $attendingStatusId, $relationshipId, $message, $numOfGuests){
 		error_log("adding attendee " . $first . "to the database"); 	
 		
@@ -149,5 +163,29 @@
 		$conn->close(); 
 		
 		error_log("RSVP for attendee no. " . $formId . " have been denied."); 		
+	}
+	
+	function deleteRSVP($formId){
+		error_log("deleting RSVP for form no. " . $formId); 
+		
+		$conn = createConnection(); 
+		
+		$call = mysqli_prepare($conn, "CALL DeleteRSVP(?)"); 
+		mysqli_stmt_bind_param($call, "i", $formId);  
+		mysqli_stmt_execute($call); 
+		
+		$conn->close(); 
+		
+		error_log("RSVP for attendee no. " . $formId . " have been deleted."); 
+	}
+	
+	function getGuestInformation($attendeeId){
+		error_log("getting Guests for attendee no. " . $attendeeId); 
+		
+		$conn = createConnection(); 
+		
+		$call = mysqli_prepare($conn, "CALL GetGuests(?)"); 
+		
+		error_log("viewing guest information for attendee no. " . $attendeeId); 
 	}
 ?>
