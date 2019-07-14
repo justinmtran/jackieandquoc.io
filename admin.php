@@ -54,7 +54,7 @@
 	<script src="js/crud.js"></script>
 	
     <!-- Plugins for this template -->
-    <script src="js/jquery-plugin-collection.js"></script
+    <script src="js/jquery-plugin-collection.js"></script>
 
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>

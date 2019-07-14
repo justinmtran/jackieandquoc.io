@@ -740,38 +740,41 @@
 								<div class="col col-sm-4">
 									<input type="text" name="last" class="form-control" placeholder="Last Name*">
 								</div>
-								<div class="col col-sm-4">
+								<div class="col col-sm-6">
 									<input type="email" name="email" class="form-control" placeholder="Email">
 								</div>
-								<div class="col col-sm-4">
+								<div class="col col-sm-6">
 									<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="Phone Number*">
 								</div>					
-								<div class="col col-sm-4">
+								<div class="col col-sm-6">
 									<?php
 										getRelationDropdown(); 
 									?>
 								</div>								
 								<div class="col col-sm-6">
 									<?php
-										getNumOfGuestsDropdown(); 
-									?>
-								</div>
-								<div class="col col-sm-6">
-									<?php
 										getAttendingStatusDropdown(); 
 									?>
 								</div>
 								<div class="col col-sm-12">
-									<textarea class="form-control" name="message" placeholder="Your Message*"></textarea>
-								</div>
-								<div class="col col-sm-12 submit-btn">
-									<button type="submit" class="submit">Confirm</button>
+									<textarea class="form-control" name="message" placeholder="Leave a message for the bride and groom..."></textarea>
+								</div>								
+                                <div class="col col-sm-6 btn">
+                                    <!--<button id="addGuestBtn" class="btn btn-primary">Add Guest</button>-->    
+                                    <button id="guestBtn" class="btn-primary">ADD GUESTS</button>
+                                </div>
+								<div class="col col-sm-6 submit-btn">
+									<button type="submit" class="submit">CONFIRM</button>
 									<span id="loader"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
 								</div>
 								<div class="col col-md-12 success-error-message">
 									<div id="success">Thank you</div>
 									<div id="error"> Error occurred while sending email. Please try again later. </div>
-								</div>
+                                </div>
+                                <!-- TABLE CONTAINS INFORMATION FOR THE PARTY'S GUESTS -->
+                                <table id="guestData" hidden>
+                                    <tbody></tbody>
+                                </table>
 							</div> 
                         </form>
 
@@ -896,12 +899,14 @@
     ================================================== -->
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-dialog.min.js"></script>  
 
     <!-- Plugins for this template -->
     <script src="js/jquery-plugin-collection.js"></script>
 
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>
+	<script src="js/guest-api.js"></script>	
 </body>
 
 </html>
