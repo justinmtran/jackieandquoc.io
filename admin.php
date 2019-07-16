@@ -3,7 +3,6 @@
 
 <?php
 	require_once 'paginator.php'; 
-	require 'config.php'; 
 	require 'modules.php'; 
 	
 	//$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 10; 
@@ -133,10 +132,10 @@
 										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
-											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
+											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
 								</tbody>
@@ -181,9 +180,9 @@
 										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
+											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
 								</tbody>
@@ -228,10 +227,10 @@
 										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
-											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
+											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
+											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger btn-uniform"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
 										</td>
 									</tr>
 								</tbody>

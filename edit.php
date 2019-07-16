@@ -5,7 +5,7 @@
 	require "config.php"; 
 	require "modules.php";
 	
-	var $formId = 0; 
+	$formId = 0; 
 	
 	if(isset($_GET["id"])){
 		$formId = $_GET["id"]; 
@@ -55,7 +55,7 @@
     <script src="js/script.js"></script>
 </head>
 
-<body">
+<body>
     <!-- start page-wrapper -->
     <div class="page-wrapper">
 

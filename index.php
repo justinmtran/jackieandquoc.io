@@ -3,7 +3,6 @@
 
 <head>
 	<?php
-		require_once "config.php"; 
 		require_once "modules.php";
 	?>
     <!-- Meta Tags -->
@@ -759,9 +758,9 @@
 								<div class="col col-sm-12">
 									<textarea class="form-control" name="message" placeholder="Leave a message for the bride and groom..."></textarea>
 								</div>								
-                                <div class="col col-sm-6 btn">
+                                <div class="col col-sm-6" align="center">
                                     <!--<button id="addGuestBtn" class="btn btn-primary">Add Guest</button>-->    
-                                    <button id="guestBtn" class="btn-primary">ADD GUESTS</button>
+                                    <button id="guestBtn" class="btn-primary btn-uniform">ADD GUESTS</button>
                                 </div>
 								<div class="col col-sm-6 submit-btn">
 									<button type="submit" class="submit">CONFIRM</button>
@@ -771,13 +770,8 @@
 									<div id="success">Thank you</div>
 									<div id="error"> Error occurred while sending email. Please try again later. </div>
                                 </div>
-                                <!-- TABLE CONTAINS INFORMATION FOR THE PARTY'S GUESTS -->
-                                <table id="guestData" hidden>
-                                    <tbody></tbody>
-                                </table>
 							</div> 
                         </form>
-
                     </div>
                 </div>
                 <!-- end row -->

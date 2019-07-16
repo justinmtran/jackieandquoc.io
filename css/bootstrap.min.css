@@ -3658,11 +3658,11 @@ textarea.input-lg {
 
 .btn {
     display: inline-block;
-    /* padding: 6px 12px; */
+    padding: 6px 12px;
     margin-bottom: 0;
     font-size: 14px;
     font-weight: 400;
-    line-height: 1.42857143;
+    line-height: 2.5;
     text-align: center;
     white-space: nowrap;
     vertical-align: middle;
@@ -3787,14 +3787,19 @@ fieldset[disabled] .btn-default:hover {
     color: #fff;
     background-color: #337ab7;
     height: 45px; 
-    line-height: 45px; 
-    font-size: 0.88889rem; 
+}
+
+.btn-uniform{
+    padding: 6px 12px;
     font-weight: 600; 
-    padding: 0 15px; 
+    display: inline; 
+    font-size: 0.88889rem;
+    border: 1px solid transparent;
     border-radius: 3px; 
     outline: 0; 
     border: 0; 
-    transition: all 0.3s;   
+    transition: all 0.3s;  
+    text-align: center; 
 }
 
 .btn-primary.focus,

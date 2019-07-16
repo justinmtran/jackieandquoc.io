@@ -1,4 +1,7 @@
-<?php	
+
+<?php
+	require_once "config.php";	
+
 	$servername = SERVER_NAME; 
 	$username = USER_NAME; 
 	$password = PASSWORD; 
@@ -6,6 +9,14 @@
 	
 	// constants 
 	$MAX_NUM_GUESTS = 9; 
+
+	if(isset($_POST['functionName']) && !empty($_POST['functionName'])){
+		$functionName = $_POST['functionName']; 
+
+		switch($functionName){
+			case 'getPlusOneRelationOptions': echo getPlusOneRelationOptions(); break; 
+		}
+	}
 ?>
 
 <?php
@@ -63,6 +74,24 @@
 		echo "</select>";
 		
 		$conn->close(); 
+	}
+
+	function getPlusOneRelationOptions(){
+		$conn = createConnection(); 
+
+		$query = "SELECT R.RelationshipId AS RelationshipId, R.Description AS Description FROM Relationship AS R 
+					INNER JOIN RelationshipType AS RT ON RT.RelationshipTypeId = R.RelationshipTypeId
+					WHERE RT.Description = 'PlusOne'"; 
+		$result = mysqli_query($conn, $query); 
+
+		$options = ""; 
+		while($row = mysqli_fetch_array($result)){
+			$options .= "<option value='" . $row["RelationshipId"] . "'>" . $row["Description"] . "</option>"; 
+		}
+
+		$conn->close(); 
+
+		return $options; 
 	}
 	
 	function getNumOfGuestsDropdown(){
