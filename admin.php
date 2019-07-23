@@ -109,12 +109,10 @@
 									<tr>
 										<th hidden>Form Id</th>
 										<th>First</th>
-										<th>Middle</th>
 										<th>Last</th>
 										<th>Phone</th>
 										<th>Email</th>
 										<th>Relationship</th>
-										<th>No. of Guests</th>
 										<th>Status</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
@@ -124,15 +122,13 @@
 									<tr>
 										<td hidden><?php echo $results->data[$i]['FormId']; ?></td>
 										<td><?php echo $results->data[$i]['FirstName']; ?></td>
-										<td><?php echo $results->data[$i]['MiddleName']; ?></td>
 										<td><?php echo $results->data[$i]['LastName']; ?></td>
 										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
-										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
 											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
 											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
@@ -157,12 +153,10 @@
 									<tr>
 										<th hidden>Form Id</th>
 										<th>First</th>
-										<th>Middle</th>
 										<th>Last</th>
 										<th>Phone</th>
 										<th>Email</th>
 										<th>Relationship</th>
-										<th>No. of Guests</th>
 										<th>Status</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
@@ -172,15 +166,13 @@
 									<tr>
 										<td hidden><?php echo $results->data[$i]['FormId']; ?></td>
 										<td><?php echo $results->data[$i]['FirstName']; ?></td>
-										<td><?php echo $results->data[$i]['MiddleName']; ?></td>
 										<td><?php echo $results->data[$i]['LastName']; ?></td>
 										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
-										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
 											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
@@ -204,12 +196,10 @@
 									<tr>
 										<th hidden>Form Id</th>
 										<th>First</th>
-										<th>Middle</th>
 										<th>Last</th>
 										<th>Phone</th>
 										<th>Email</th>
 										<th>Relationship</th>
-										<th>No. of Guests</th>
 										<th>Status</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
@@ -219,15 +209,13 @@
 									<tr>
 										<td hidden><?php echo $results->data[$i]['FormId']; ?></td>
 										<td><?php echo $results->data[$i]['FirstName']; ?></td>
-										<td><?php echo $results->data[$i]['MiddleName']; ?></td>
 										<td><?php echo $results->data[$i]['LastName']; ?></td>
 										<td><?php echo $results->data[$i]['PhoneNumber']; ?></td>
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
-										<td><?php echo $results->data[$i]['NumOfGuests']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
 										<td>
-											<a href="" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
 											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
 											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
 											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger btn-uniform"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->

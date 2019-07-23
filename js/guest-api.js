@@ -1,21 +1,27 @@
 $(document).ready(function(){
-	// Global Variables
-	var arrHead = new Array(); 
-	var guests = { list: [] }; 
-	var plusOneRelationsOptions = ""; 
-
-	// set header
-	arrHead = ['First Name', 'Last Name', 'Plus One?', 'Relation to Plus One', '']; 
-
-	// add event handler to the guest button (dialog for guest API window)
-	var guestBtn = $("#guestBtn"); 
-	guestBtn.click(function(e){
-		e.preventDefault(); 
-		openGuestDialog(); 
-	});
+	// constants
+	var MAX_GUESTS = 9; 
+	var numOfGuests = 0; 
+	
+	//{GuestFirst,GuestLast,PlusOneType,GuestRelation,PlusOneFirst,PlusOneLast,PlusOneRelation}
+	var guests = { list: [] };
+	var header = ['First Name', 'Last Name', 'Plus One', 'Relation', '']; 
+	var colors = {
+		list: [
+			{"color" : "rgb(123, 104, 238)", "isUsed" : false}, 
+			{"color" : "rgb(152, 251, 152)", "isUsed" : false}, 
+			{"color" : "rgb(240, 128, 128)", "isUsed" : false}, 
+			{"color" : "rgb(255, 218, 185)", "isUsed" : false}, 
+			{"color" : "rgb(216, 191, 216)", "isUsed" : false}, 
+			{"color" : "rgb(192, 192, 192)", "isUsed" : false}, 
+			{"color" : "rgb(160, 224, 208)", "isUsed" : false}, 
+			{"color" : "rgb(0, 255, 255)", "isUsed" : false}, 
+			{"color" : "rgb(255, 250, 205)", "isUsed" : false},
+		] 
+	};
 
 	var dialog = new BootstrapDialog({
-		title: "Guest Form",
+		title: "* Please do not include yourself (the main applicant). You will be inserted automatically. Thank You.",
 		message: function(dialogRef){
 			if($("#guestTable").length < 1)
 				dialogRef.$modalBody[0].innerHTML = getGuestAPI();		 
@@ -24,39 +30,34 @@ $(document).ready(function(){
 			icon: 'glyphicon glyphicon-plus',
 			label: ' Add Guest',
 			cssClass: 'btn-warning btn-admin',
-			action: function(dialogRef){ addRow(); }
+			action: function(dialogRef){ 
+				if(numOfGuests < MAX_GUESTS)
+					addRow();	 
+			}
 		}, {
 			label: 'Save',
 			action: function(dialogRef){
-				guests.list.length = 0; // empty array. 
-				$("#guestTable > tbody > tr").each(function(){
-					var first = $(this).find("[name='guest_first[]']").val(); 
-					var last = $(this).find("[name='guest_last[]']").val();
-					var isPlusOne = ($(this).find("[name='guest_isPlusOne[]']").is(':checked')) ? true : false; 
-					var relation = (isPlusOne) ? $(this).find("[name='guest_relation[]']").val() : 0; 
-
-					guests.list.push({
-						"First" : first, 
-						"Last" : last,
-						"IsPlusOne" : isPlusOne, 
-						"Relation" : relation
-					}); 
-				});
-
-				$("#guestBtn").text((guests.list.length > 1) ? guests.list.length + " GUESTS ADDED  " : guests.list.length + " GUEST ADDED  " )
-							  .append("<i class='fa fa-check'></i>");
-				 
-
+				guests.list.length = 0; 
+				saveGuestList(); 
+				
 				dialogRef.close();
+				$("#guestBtn").text("PARTY OF " + (guests.list.length+1) + " ").append("<i class='fa fa-check'></i>");
 			}
 		}],
 		autodestroy: false,
 		onshown: function(){
-			if($("#guestTable > tbody > tr").length < 1)
+			if($("#guestTable > tbody > tr").length < 1){
 				addRow(); 
+			}
+				
 		}
 	});
-		
+ 
+	var guestBtn = $("#guestBtn").click(function(e){
+		e.preventDefault(); 
+		dialog.open(); 
+	});
+
 	///////////////
 	// FUNCTIONS //
 	///////////////
@@ -67,9 +68,9 @@ $(document).ready(function(){
 		var tr = document.createElement('tr');
 		thead.prepend(tr); 
 		
-		for (var h = 0; h < arrHead.length; h++) {
+		for (var h = 0; h < header.length; h++) {
 			var th = document.createElement('th'); // TABLE HEADER.
-			th.innerHTML = arrHead[h];
+			th.innerHTML = header[h];
 			tr.appendChild(th);
 		}
 
@@ -79,61 +80,114 @@ $(document).ready(function(){
 	// ADD A NEW ROW TO THE TABLEs
 	function addRow() {
 		var guestTable = $('#guestTable'); 
+		var headers = guestTable.find("thead").find("th"); 
  
-		if(guestTable.find('tbody > tr').length > 8) // can't add more then 9 guests
-			return; 
-		else if(guestTable.find('tbody').length < 1){
+		if(guestTable.find('tbody').length < 1){
 			guestTable.append("<tbody></tbody>"); 
 		}
-			
 
 		var tr = $("<tr></tr>"); 
+		var rowColor = getRowColor(); 
+		tr.css("background-color", rowColor); 
 		guestTable.find('tbody').append(tr); // TABLE ROW.
 
-		for (var i = 0; i < arrHead.length; i++) {
+		for (var i = 0; i < headers.length; i++) {
 			var td = $("<td></td>"); 
 			td.attr("align", "center"); 
 			tr.append(td); 
-            
-			switch(i){
-                case 0: td[0].appendChild(getInputField("First Name*", "guest_first[]")); break; 
-				case 1: td[0].appendChild(getInputField("Last Name*", "guest_last[]")); break; 
-				case 2: td[0].appendChild(getCheckBox()); break; 
-				case 3: td[0].appendChild(getDropdown()); break; 
-				case 4: td[0].appendChild(getRemoveButton()); break; 
+
+			switch(headers[i].innerHTML){
+                case "First Name": td.append(createInputField("First Name*", "guestfirst[]")); break; 
+				case "Last Name": td.append(createInputField("Last Name*", "guestlast[]")); break; 
+				case "Plus One": td[0].appendChild(getPlusOneDropdown()); break;
+				case "Relation" : td[0].appendChild(getRelationDropdown(-1)); break; 
+				default: td[0].appendChild(getRemoveButton()); break; 
 			}
 		}
-    }
 
-    function getInputField(inputValue, name, value = ""){
+		numOfGuests++;
+	}
+
+	function addPlusOne(parentRow){
+		var headers = $("#guestTable").find("thead").find("th"); 
+		var tr = $("<tr></tr>"); 
+
+		tr.css("background-color", parentRow.css("background-color")); 
+		parentRow.after(tr); 
+
+		for (var i = 0; i < headers.length; i++) {
+			var td = $("<td></td>"); 
+			td.attr("align", "center"); 
+			tr.append(td); 
+
+			switch(headers[i].innerHTML){
+                case "First Name": td.append(createInputField("Plus One First Name*", "plusonefirst[]")); break; 
+				case "Last Name": td.append(createInputField("Plus One Last Name*", "plusonelast[]")); break; 
+				case "Relation" : td[0].appendChild(getRelationDropdown(1)); break; 
+			}
+		}
+	}
+	
+	function getRowColor(){
+		for(var i = 0; i < colors.list.length; i++){
+			if(colors.list[i].isUsed)
+				continue; 
+			else{
+				colors.list[i].isUsed = true; 
+				return colors.list[i].color; 
+			}
+		}
+
+		return null; 
+	}
+
+    function createInputField(placeholder, name, value = ""){
 		var ele = $("<input></input>")
 		ele.attr('type', 'text');
-		ele.attr('placeholder', inputValue);
+		ele.attr('placeholder', placeholder);
 		ele.attr('class', 'form-control'); 
 		ele.attr('name', name); 
 		ele.attr('value', value); 
 	
-		return ele[0]; 
+		return ele; 
 	}
 
-	function getCheckBox(isChecked = false){
-		var chkbx = document.createElement('input'); 
-		chkbx.setAttribute('type', 'checkbox');
-        chkbx.setAttribute("name", "guest_isPlusOne[]")
-		chkbx.addEventListener("change", function(){
-			var dropDown = $(this).closest('tr').find('select'); 
-			var isVisible = dropDown.is(":visible"); 
-			
-			if(isVisible)
-				dropDown.hide(); 
-			else
-				dropDown.show(); 
-		}); 
-		
-		if(isChecked)
-		chkbx.setAttribute("checked", "checked"); 
-			
-		return chkbx; 
+	function getPlusOneDropdown(value){
+		var dropdown = $("<select></select>")
+		dropdown.append("<option value = 0>None</option>"); 
+		dropdown.attr("name", "guestplusonetype[]");
+		$.ajax({
+			type: "POST",
+			url: "modules.php", 
+			dataType: "html",
+			data: { functionName: 'getPlusOneTypeOptions'}, 
+			success: function(response){
+				dropdown.append(response); 
+			} 
+		});
+
+		dropdown.change(function(){
+			var hasPlusOne = $(this).val(); 
+			var row = $(this).closest('tr'); 
+			switch(hasPlusOne){
+				case '0': {
+					removePlusOne(row); 
+					$(this).parent().next().find('select').hide(); 
+					break; 
+				}
+				case '1': {
+					removePlusOne(row)
+					$(this).parent().next().find('select').show(); 
+					break; 
+				}
+				case '2': {
+					var relation = $(this).parent().next().find('select').hide(); 
+					addPlusOne($(this).closest('tr')); 
+				}
+			}	
+		});
+
+		return dropdown[0]; 
 	}
 
 	function getRemoveButton(){
@@ -151,15 +205,13 @@ $(document).ready(function(){
 		anchor.click(function(){ 
 			removeRow(this); 
 		});
-
+ 
 		return anchor[0]; 
     }
     
-    function getDropdown(value = 0){
-		var dropDown = $("<select></select>");  
-		dropDown.attr("name", "guest_relation[]");
-		 
-		dropDown.append(plusOneRelationsOptions); 
+    function getRelationDropdown(value = 0){
+		var dropdown = $("<select></select>");  
+		dropdown.attr("name", "guestrelation[]");
 
 		$.ajax({
 			type: "POST",
@@ -167,30 +219,82 @@ $(document).ready(function(){
 			dataType: "html",
 			data: { functionName: 'getPlusOneRelationOptions'}, 
 			success: function(response){
-				dropDown.append(response); 
+				dropdown.append(response); 
 			} 
 		});
 
-		if(value < 1)
-			dropDown.attr("style", "display: none;"); 
+		if(value < 0)
+			dropdown.attr("style", "display: none;"); 
 		else{
-			dropDown.val(value); 
-			dropDown.find("option[value=" + value + "]").attr("selected", "selected"); 
+			dropdown.val(value); 
+			dropdown.find("option[value=" + value + "]").attr("selected", "selected"); 
 		}
 
-		
-		return dropDown[0]; 
+		return dropdown[0]; 
 	}	
 
 	// DELETE TABLE ROW.
 	function removeRow(oButton) {
-		var guestTable = document.getElementById('guestTable');
-		guestTable.deleteRow(oButton.parentNode.parentNode.rowIndex);       // TD -> TR -> BUTTON
+		var button = $(oButton); 
+		var row = button.closest('tr'); 
+		var color = row.css("background-color"); 
+		var plusOne = row.find("select[name='guestplusonetype[]']");
+
+		if(plusOne.val() > 1)
+			removePlusOne(row); 
+
+		row.remove(); 
+		removeColor(color); 
+		numOfGuests--; 
 	}
 
-	// OPEN GUEST API
-	function openGuestDialog(){
-		dialog.open();   
+	function removePlusOne(parentRow){
+		 var plusOneRow = parentRow.next(); 
+
+		 if(plusOneRow.css("background-color") === parentRow.css("background-color"))
+		 	plusOneRow.remove(); 
+	}
+
+	function removeColor(color){
+		for(var i = 0; i < colors.list.length; i++){
+			if(colors.list[i].color === color){
+				colors.list[i].isUsed = false; 
+			}
+		}
+	}
+
+	function saveGuestList(){
+		var rows = $("#guestTable > tbody > tr"); 
+
+		for(var i = 0; i < rows.length; i++){
+			var current = rows.eq(i); 
+			var plusOne = rows.eq(i+1); 
+
+			var first = current.find("input[name='guestfirst[]']").val(); 
+			var last = current.find("input[name='guestlast[]']").val(); 
+			var plusOneType = current.find("select[name='guestplusonetype[]']").val(); 
+			var relation = current.find("select[name='guestrelation[]']").val(); 
+			var plusOneFirst = plusOneLast = plusOneRelation = $(); 
+
+			if(plusOneType > 1){
+				plusOneFirst = plusOne.find("input[name='plusonefirst[]']").val(); 
+				plusOneLast = plusOne.find("input[name='plusonelast[]']").val(); 
+				plusOneRelation = plusOne.find("select[name='guestrelation[]']").val(); 
+				i++; 
+			}
+
+			guests.list.push({
+				"GuestFirst" : first, 
+				"GuestLast" : last, 
+				"PlusOneType" : plusOneType, 
+				"GuestRelation" : relation, 
+				"PlusOneFirst" : (plusOneFirst.length > 0) ? plusOneFirst : null, 
+				"PlusOneLast" : (plusOneLast.length > 0) ? plusOneLast : null, 
+				"PlusOneRelation" : (plusOneRelation.length > 0) ? plusOneRelation : null
+			});
+
+			numOfGuests = guests.list.length; 
+		}
 	}
 
 	function getGuestAPI(){ 
@@ -201,5 +305,80 @@ $(document).ready(function(){
 				"</div>" + 
 			"</div>";
 	}
-});
 
+	/*------------------------------------------
+        = RSVP FORM SUBMISSION
+    -------------------------------------------*/
+    if ($("#rsvp-form").length){ 
+        $("#rsvp-form").validate({
+            rules: {
+                first: {
+                    required: true,
+                    minlength: 2
+                },
+				last: {
+                    required: true,
+                    minlength: 2
+                },
+				attendstatus:  {
+					required: true
+				},
+				relationship:  {
+					required: true
+				},
+				phone: {
+					required: true
+				}
+            },
+
+            messages: {
+                first: "Please enter your first name",
+                last: "Please enter your last name",				
+				attendstatus: "Are you attending?", 
+				relationship: "Select your relationship to the couple",
+				phone: "Please enter a 10-digit phone number"
+            },
+
+            submitHandler: function(form) {
+                $("#loader").css("display", "inline-block");
+                $.ajax({
+                    type: "post",
+                    url: "submit.php",
+                    data: {
+						first: $("input[name=first]").val(),
+                        last: $("input[name=last]").val(),
+                        phone : $("input[name=phone]").val(),
+                        email : $("input[name=email]").val(), 
+                        attendstatus : $("select[name=attendstatus]").val(),
+                        relationship : $("select[name=relationship]").val(),
+                        message : $("textarea[name=message]").val(),
+						guest: guests.list
+					},
+                    success: function() {
+                        $("#loader").hide();
+                        $("#success").slideDown("slow");
+                        setTimeout(function() {
+                            $("#success").slideUp("slow");
+                        }, 3000);
+                        document.getElementById("rsvp-form").reset(); 
+						form.reset();	
+						$("#guestTable > tbody").empty(); 	
+						$("#guestBtn").text("ADD GUESTS");
+						saveGuestList(); 			
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $("#loader").hide();
+                        $("#error").slideDown("slow");
+                        setTimeout(function() {
+                            $("#error").slideUp("slow");
+                        }, 3000);
+                    }
+                });
+				
+                return false; // required to block normal submit since you used ajax
+            }
+
+        });
+    }
+
+});

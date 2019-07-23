@@ -161,20 +161,18 @@
                                 <div class="details-inner">
                                     <h3>The groom</h3>
                                     <p>
-                                        
-										Quoc Nugyen, the third eldest, the first of his name, breaker of tears and wearer of nike apparel.
+										<!-- Quoc Nugyen, the third eldest, the first of his name, breaker of tears and wearer of nike apparel.
 										He currently serves as a loyal squire under house Sac Sheriff. 
 										Nguyen was also the first of his house to become grand maester of Government and Public Service.
 										He's an admirer and former participant of the fighting ball pits. 
 										His favorite ball pit team is the Sacramento Kings, and
-										in his spare time, he enjoys being tear gased, tased and pepper sprayed.
-                                        <!--
+										in his spare time, he enjoys being tear gased, tased and pepper sprayed. -->
 										Quoc is the third oldest out of his eleven siblings. 
 										He was the first in his family to graduate with an associate degree in Government and Public Service.
 										He loves to watch and play a variety of sports (espcically basketball).
 										His favorite basketball team is the Sacramento Kings, and
 										in his spare time, he likes to play basketball, video games, and exercise.
-										-->
+										
 									</p>
                                     <span class="signature">Quoc</span>
                                     <ul class="social-links">
@@ -200,9 +198,7 @@
                                     <span class="signature">Jackie</span>
                                     <ul class="social-links">
                                         <li><a href="https://www.facebook.com/xjaybaby"><i class="fa fa-facebook"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
                                         <li><a href="https://www.instagram.com/__jaynh/"><i class="fa fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -217,7 +213,6 @@
             <!-- end container -->
         </section>
         <!-- end wedding-couple-section -->
-
 
         <!-- start count-down-section -->
         <section class="count-down-section section-padding parallax" data-bg-image="images/countdown-bg.jpg" data-speed="7">
@@ -244,10 +239,16 @@
         <section class="story-section section-padding" id="story">
             <div class="container">
                 <div class="row">
-                    <div class="col col-xs-12">
+                    <div class="col col-xs-6">
                         <div class="section-title">
                             <div class="vertical-line"><span><i class="fi flaticon-two"></i></span></div>
-                            <h2>Our love story</h2>
+                            <h2><span style="color: mediumpurple;">Her Story</span></h2>
+                        </div>
+                    </div>
+                    <div class="col col-xs-6">
+                        <div class="section-title">
+                            <div class="vertical-line"><span><i class="fi flaticon-two"></i></span></div>
+                            <h2><span style="color: navy;">His Story</span></h2>
                         </div>
                     </div>
                 </div>
@@ -258,8 +259,8 @@
                         <div class="story-timeline">
                             <div class="row">
                                 <div class="col col-md-6">
-                                    <div class="story-text right-align-text">
-                                        <h3>First met</h3>
+                                    <div class="story-text left-align-text">
+                                        <h3 style="color: mediumpurple;">First met</h3>
                                         <span class="date">Aug 2007</span>
                                         <p>
 											We first met in high school.  He was a senior and I was a sophomore.  
@@ -271,24 +272,23 @@
                                     </div>
                                 </div>
                                 <div class="col col-md-6">
-                                    <div class="img-holder">
-                                        <img src="images/story/img-1.jpg" alt class="img img-responsive">
+                                    <div class="story-text right-align-text">
+                                        <h3 style="color: navy;">First met</h3>
+                                        <span class="date">Aug 2007</span>
+                                        <p>
+                                            I first saw her on my way to Asian club.
+                                            We were dating other when we first met.
+                                            We became close after high school when 
+                                            she started working at the same 
+                                            McDonalds I was working at.   
+                                        </p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col col-md-6">
-                                    <div class="img-holder right-align-text story-slider">
-                                        <img src="images/story/img-2.jpg" alt class="img img-responsive">
-                                        <img src="images/story/img-3.jpg" alt class="img img-responsive">
-                                    </div>
-                                </div>
                                 <div class="col col-md-6 text-holder">
-                                    <span class="heart">
-                                        <i class="fa fa-heart"></i>
-                                    </span>
                                     <div class="story-text">
-                                        <h3>First date</h3>
+                                        <h3 style="color: mediumpurple;">First date</h3>
                                         <span class="date">Aug 14 2010</span>
                                         <p>
 											Our first date was a typical first date: dinner and a movie.  
@@ -301,14 +301,25 @@
 										</p>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col col-md-6 text-holder right-heart">
+                                <div class="col col-md-6 text-holder right-align-text">
                                     <span class="heart">
                                         <i class="fa fa-heart"></i>
                                     </span>
-                                    <div class="story-text right-align-text">
-                                        <h3>Proposal</h3>
+                                    <div class="story-text">
+                                        <h3 style="color: navy;">First date</h3>
+                                        <span class="date">Aug 14 2010</span>
+                                        <p>
+                                            On our first date, I took her out to watch Dinner for Schmucks. After a couple of dates, I planned
+                                            a big trip to take her to the Monterey Bay Aquarium. My plan was to ask her out when we were
+                                            watching the waves and she said yes.
+										</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-md-6 text-holder left-heart">
+                                    <div class="story-text left-align-text">
+                                        <h3 style="color: mediumpurple;">Proposal</h3>
                                         <span class="date">Aug 20 2018</span>
                                         <p>
 											Eight years later, he finally proposed.  I honestly thought it was never going to happen since I kept dropping hints and he never did anything with them.
@@ -320,9 +331,22 @@
 										</p>
                                     </div>
                                 </div>
-                                <div class="col col-md-6">
-                                    <div class="img-holder right-align-text">
-                                        <img src="images/story/img-7.jpg" alt class="img img-responsive">
+                                <div class="col col-md-6 text-holder left-heart">
+                                    <span class="heart">
+                                        <i class="fa fa-heart"></i>
+                                    </span>
+                                    <div class="story-text right-align-text">
+                                        <h3 style="color: navy;">Proposal</h3>
+                                        <span class="date">Aug 20 2018</span>
+                                        <p>
+                                            I was first planning to propose to her at night during the fireworks, but I realized that the photos
+                                            would be bad at night. So then I was deciding if I wanted to propose either at the Wishing Well
+                                            or in front of the castle. I decided to do it in front of the castle since it wasn’t too crowded at the
+                                            time. I hid the ring in my shirt pocket so that she wouldn’t know that I had it. A couple got
+                                            engaged right before I asked so she was already upset since I made it seem like I wasn’t going to
+                                            ask, but I did ask her to marry me and she called me a liar. I told her I was being serious and she
+                                            said yes.
+										</p>
                                     </div>
                                 </div>
                             </div>
@@ -442,7 +466,6 @@
             <!-- end container -->
         </section>
         <!-- end events-section -->
-
 
         <!-- start inportant-people-section -->
         <section class="inportant-people-section section-padding" id="people">
@@ -725,18 +748,20 @@
                         <p>
 							<!-- Please reserve before May 5th, 2020. Your passcode will be provided on your physical invitation.  -->
 							<!-- If you forgot/lost your passcode, please contact us for a new one.  -->
-							Please note that any plus ones are subject to approval by the bride and groom. 
-							You will be notified via email or text on the status of your plus one.  
+                            We know that our special day seems like it is worlds away, but please fill our this pre-RSVP 
+                            form to let us know if you are interested in attending. We know that plans change all the time, 
+                            and this is not a real RSVP. We would just like an idea of who is all able to spend the best day 
+                            ever with us. <br> <br>
+
+							* Please note that any plus ones are subject to approval by the bride and groom. 
+							You will be notified via email or text on the status of your plus one.          
 						</p>
                         <form id="rsvp-form" class="form validate-rsvp-form row" method="post">
 							<div>
-								<div class="col col-sm-4">
+								<div class="col col-sm-6">
 									<input type="text" name="first" class="form-control" placeholder="First Name*">
 								</div>
-								<div class="col col-sm-4">
-									<input type="text" name="middle" class="form-control" placeholder="Middle Name">
-								</div>
-								<div class="col col-sm-4">
+								<div class="col col-sm-6">
 									<input type="text" name="last" class="form-control" placeholder="Last Name*">
 								</div>
 								<div class="col col-sm-6">
@@ -757,11 +782,10 @@
 								</div>
 								<div class="col col-sm-12">
 									<textarea class="form-control" name="message" placeholder="Leave a message for the bride and groom..."></textarea>
-								</div>								
-                                <div class="col col-sm-6" align="center">
-                                    <!--<button id="addGuestBtn" class="btn btn-primary">Add Guest</button>-->    
-                                    <button id="guestBtn" class="btn-primary btn-uniform">ADD GUESTS</button>
-                                </div>
+                                </div>		
+                                <div class="col col-sm-6" align="center">    
+                                    <button id="guestBtn" class="btn-primary btn-uniform">ADD PARTY MEMBERS</button>
+                                </div>					
 								<div class="col col-sm-6 submit-btn">
 									<button type="submit" class="submit">CONFIRM</button>
 									<span id="loader"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
@@ -801,6 +825,10 @@
 							Parking will be free for all wedding guests on the day of the ceremony. 
 							You will find free parking in the Grand Californian Self-Parking area of the park, which is right in-between the location of both events.
 						</p>
+
+                        <a href="https://drive.google.com/uc?export=view&id=1Qf-JahOmuAwZ1tAv3zg6der_hKE4WycL">
+                            <strong>Click here to see map </strong><i class="fa fa-angle-right"></i>
+                        </a>
                     </div>
                     <div class="col col-md-6">
                         <h3>Accommodations</h3>
@@ -876,7 +904,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col col-xs-12">
-                        <h2>For it is plain as anyone can see. We're simply meant to be.</h2>
+                        <h2 style="padding-top: 200px;">For it is plain as anyone can see. We're simply meant to be.</h2>
                         <span>- Nightmare before Christmas</span>
                     </div>
                 </div>
