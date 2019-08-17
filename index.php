@@ -77,7 +77,7 @@
                 <div class="couple-name-merried-text" style="padding-top: 200px;">
                     <h2 class="wow slideInUp" data-wow-duration="1s">Jackie &amp; Quoc</h2>
                     <div class="married-text wow fadeIn" data-wow-delay="1s">
-                        <h4 class="">
+                        <h4>
                             <span class=" wow fadeInUp" data-wow-delay="1.05s">W</span>
                             <span class=" wow fadeInUp" data-wow-delay="1.10s">e</span>
                             <span class=" wow fadeInUp" data-wow-delay="1.15s">'</span>
@@ -136,7 +136,7 @@
                             <li><a href="#story">Story</a></li>
                             <li><a href="#events">Events</a></li>
                             <li><a href="#people">People</a></li>
-                            <!-- <li><a href="#gallery">Gallery</a></li> -->
+                            <li><a href="#gallery">Gallery</a></li>
                             <li><a href="#rsvp">RSVP</a></li>
                         </ul>
                     </div>
@@ -277,7 +277,7 @@
                                         <span class="date">Aug 2007</span>
                                         <p>
                                             I first saw her on my way to Asian club.
-                                            We were dating other when we first met.
+                                            We were dating other people when we first met.
                                             We became close after high school when 
                                             she started working at the same 
                                             McDonalds I was working at.   
@@ -521,7 +521,7 @@
                                         </div>
                                         <div class="details">
                                             <h3>Chan Saetern</h3>
-                                            <span>Yo Bestest Friend</span>
+                                            <span>Groomsmen</span>
                                             <ul class="social-links">
                                                 <li><a href="https://www.instagram.com/itsjusthin/?hl=en"><i class="fa fa-instagram"></i></a></li>
                                             </ul>
@@ -535,7 +535,7 @@
                                         </div>
                                         <div class="details">
                                             <h3>Lou Saelee</h3>
-                                            <span>Gambling Friend</span>
+                                            <span>Groomsmen</span>
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
@@ -552,7 +552,7 @@
                                         </div>
                                         <div class="details">
                                             <h3>Alvin Vo-Tran</h3>
-                                            <span>Monterey Bay Friend</span>
+                                            <span>Groomsmen</span>
                                             <ul class="social-links">
                                                 <li><a href="#"><i class="fa fa-facebook"></i></a></li>
                                             </ul>
@@ -643,92 +643,80 @@
         </section>
         <!-- end inportant-people-section -->
 
-
         <!-- start gallery-section -->
-        <!-- <section class="gallery-section section-padding" id="gallery"> -->
-            <!-- <div class="container"> -->
-                <!-- <div class="row"> -->
-                    <!-- <div class="col col-xs-12"> -->
-                        <!-- <div class="section-title"> -->
-                            <!-- <div class="vertical-line"><span><i class="fi flaticon-two"></i></span></div> -->
-                            <!-- <h2>Our gallery</h2> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
-                <!-- end section-title --> 
+        <section class="gallery-section section-padding" id="gallery">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-xs-12">
+                        <div class="section-title">
+                            <div class="vertical-line"><span><i class="fi flaticon-two"></i></span></div>
+                            <h2>our gallery</h2>
+                        </div>
+                    </div>
+                </div>
+                <!-- end section-title  -->
 
-                <!-- <div class="row"> -->
-                    <!-- <div class="col col-xs-12 sortable-gallery"> -->
-                        <!-- <div class="gallery-filters"> -->
-                            <!-- <ul> -->
-                                <!-- <li><a data-filter="*" href="#" class="current">All</a></li> -->
-                                <!-- <li><a data-filter=".wedding" href="#">Wedding</a></li> -->
-                                <!-- <li><a data-filter=".ceremony" href="#">Ceremony</a></li> -->
-                                <!-- <li><a data-filter=".party" href="#">Party</a></li> -->
-                            <!-- </ul> -->
-                        <!-- </div> -->
+                <div class="row">
+                    <div class="col col-xs-12 sortable-gallery">
 
-                        <!-- <div class="gallery-container gallery-fancybox masonry-gallery"> -->
-                            <!-- <div class="grid wedding"> -->
-                                <!-- <a href="images/gallery/img-1.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-1.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid wedding ceremony"> -->
-                                <!-- <a href="images/gallery/img-2.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-2.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid ceremony eudcation"> -->
-                                <!-- <a href="images/gallery/img-3.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-3.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid wedding party"> -->
-                                <!-- <a href="images/gallery/img-4.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-4.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid ceremony"> -->
-                                <!-- <a href="images/gallery/img-5.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-5.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid party"> -->
-                                <!-- <a href="images/gallery/img-6.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-6.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid wedding"> -->
-                                <!-- <a href="images/gallery/img-7.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-7.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                            <!-- <div class="grid ceremony"> -->
-                                <!-- <a href="images/gallery/img-8.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-8.jpg" alt class="img img-responsive"> -->
-                                <!-- </a>  -->
-                                <!-- <a href="https://www.youtube.com/embed/KyBYuEgvFl0?autoplay=1" data-type="iframe" class="video-play-btn"> -->
-                                    <!-- <img src="images/gallery/img-8.jpg" alt class="img img-responsive"> -->
-                                    <!-- <i class="fa fa-play"></i> -->
-                                <!-- </a> -->
-
-                            <!-- </div> -->
-                            <!-- <div class="grid ceremony"> -->
-                                <!-- <a href="images/gallery/img-9.jpg" class="fancybox" data-fancybox-group="gall-1"> -->
-                                    <!-- <img src="images/gallery/img-9.jpg" alt class="img img-responsive"> -->
-                                <!-- </a> -->
-                            <!-- </div> -->
-                        <!-- </div> -->
-                    <!-- </div> -->
-                <!-- </div> -->
+                        <div class="gallery-container gallery-fancybox masonry-gallery">
+                            <div class="grid wedding">
+                                <a href="images/gallery/img-1.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-1.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid wedding ceremony">
+                                <a href="images/gallery/img-2.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-2.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid ceremony eudcation">
+                                <a href="images/gallery/img-3.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-3.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid wedding party">
+                                <a href="images/gallery/img-4.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-4.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid ceremony">
+                                <a href="images/gallery/img-5.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-5.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid party">
+                                <a href="images/gallery/img-6.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-6.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid wedding">
+                                <a href="images/gallery/img-7.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-7.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                            <div class="grid ceremony">
+                                <a href="images/gallery/img-8.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-8.jpg" alt class="img img-responsive">
+                                </a>
+                                <!--<a href="https://www.youtube.com/embed/0hiUuL5uTKc?start=9&autoplay=1" data-type="iframe" class="video-play-btn">
+                                    <img src="images/gallery/img-8.jpg" alt class="img img-responsive">
+                                    <i class="fa fa-play"></i>
+                                </a>-->
+                            </div>
+                            <div class="grid ceremony">
+                                <a href="images/gallery/img-9.jpg" class="fancybox" data-fancybox-group="gall-1">
+                                    <img src="images/gallery/img-9.jpg" alt class="img img-responsive">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <!-- end row -->
-            <!-- </div> -->
+            </div>
             <!-- end container -->
-        <!-- </section> -->
+        </section>
         <!-- end gallery-section -->
-
-
 
         <!-- start rsvp-section -->
         <section class="rsvp-section section-padding parallax" data-bg-image="images/rsvp-bg.jpg" data-speed="7" id="rsvp">
@@ -786,7 +774,7 @@
                                 <div class="col col-sm-6" align="center">    
                                     <button id="guestBtn" class="btn-primary btn-uniform">ADD PARTY MEMBERS</button>
                                 </div>					
-								<div class="col col-sm-6 submit-btn">
+								<div class="col col-sm-6">
 									<button type="submit" class="submit">CONFIRM</button>
 									<span id="loader"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
 								</div>

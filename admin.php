@@ -2,10 +2,20 @@
 <html lang="en">
 
 <?php
+	// Initialize the session
+	session_start();
+	
+	// Check if the user is logged in, if not then redirect him to login page
+	if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		header("location: login.php");
+		exit;
+	}
+?>
+
+<?php
 	require_once 'paginator.php'; 
 	require 'modules.php'; 
-	
-	//$limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 10; 
+	 
     $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1; 
     $links      = ( isset( $_GET['links'] ) ) ? $_GET['links'] : 7;
 	
@@ -40,7 +50,9 @@
     <link href="css/owl.transitions.css" rel="stylesheet">
     <link href="css/jquery.fancybox.css" rel="stylesheet">
     <link href="css/magnific-popup.css" rel="stylesheet">
-	<link href="css/bootstrap-dialog.min.css rel="stylesheet"> 
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/bootstrap-dialog.min.css" rel="stylesheet"> 
+	<link href="css/data-tables.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
@@ -50,13 +62,15 @@
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 	<script src="js/bootstrap-dialog.min.js"></script>  
-	<script src="js/crud.js"></script>
+	<script src="js/data-tables.min.js"></script>
 	
     <!-- Plugins for this template -->
     <script src="js/jquery-plugin-collection.js"></script>
 
     <!-- Custom script for this template -->
-    <script src="js/script.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/crud.js"></script>
+
 </head>
 
 <body onload="setActiveTab()">
@@ -74,9 +88,12 @@
         <!-- Start header -->
         <header id="header" class="site-header header-style-1">
 			<div class="container">
-				<div class="row">
+				<div class="row" style="display:inline;">
 					<div class="couple-logo" align="center">
 						<h1><a href="#home">J <i class="fi flaticon-shape-1"></i> Q</a></h1>
+					</div>
+					<div align="right">
+						<a href="logout.php" class="btn btn-danger">Sign Out of <?php echo $_SESSION["user"]; ?></a>
 					</div>
 				</div>
 				<!-- end of nav-collapse -->
@@ -104,7 +121,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-striped table-condensed table-bordered table-rounded">
+							<table style="width: 100%;" class="table table-striped table-condensed table-bordered table-rounded">
 								<thead>
 									<tr>
 										<th hidden>Form Id</th>
@@ -114,6 +131,7 @@
 										<th>Email</th>
 										<th>Relationship</th>
 										<th>Status</th>
+										<th>Party Size</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
 								</thead>
@@ -127,17 +145,17 @@
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
+										<td><?php echo $results->data[$i]['PartySize']; ?></td>
 										<td>
-											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
-											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="viewAttendeeMessage('<?=$results->data[$i]['FirstName']?>','<?= $results->data[$i]['Message']?>')" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-comment"></i> Message</a> <!-- Message --> 
+											<a onclick="approveForm(<?=$results->data[$i]['FormId']?>,'<?=$results->data[$i]['FirstName']?>','<?=$results->data[$i]['Email']?>');" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a onclick="denyForm(<?=$results->data[$i]['FormId']?>, '<?=$results->data[$i]['FirstName']?>','<?=$results->data[$i]['Email']?>');" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
+								<?php endfor; ?>	
 								</tbody>
-								<?php endfor; ?>
 							</table>
-							<?php //echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>
@@ -148,7 +166,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-striped table-condensed table-bordered table-rounded">
+							<table style="width: 100%;" class="table table-striped table-condensed table-bordered table-rounded">
 								<thead>
 									<tr>
 										<th hidden>Form Id</th>
@@ -158,6 +176,7 @@
 										<th>Email</th>
 										<th>Relationship</th>
 										<th>Status</th>
+										<th>Party Size</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
 								</thead>
@@ -171,16 +190,16 @@
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
+										<td><?php echo $results->data[$i]['PartySize']; ?></td>
 										<td>
-											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="denyForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
+											<a onclick="viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="viewAttendeeMessage('<?=$results->data[$i]['FirstName']?>','<?= $results->data[$i]['Message']?>')" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-comment"></i> Message</a> <!-- Message --> 
+											<a onclick="denyForm(<?=$results->data[$i]['FormId']?>, '<?=$results->data[$i]['FirstName']?>','<?=$results->data[$i]['Email']?>');" class="btn btn-danger btn-uniform"><i class="fa fa-times"></i> Deny</a> <!-- Disaprove -->
 										</td>
 									</tr>
+								<?php endfor; ?>									
 								</tbody>
-								<?php endfor; ?>
 							</table>
-							<?php //echo $Paginator->createLinks($links, 'pagination pagination-sm'); ?>
 						</div>
 					</div>
 				</div>
@@ -191,7 +210,7 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
-							<table class="table table-striped table-condensed table-bordered table-rounded table-hover">
+							<table style="width: 100%;" class="table table-striped table-condensed table-bordered table-rounded table-hover">
 								<thead>
 									<tr>
 										<th hidden>Form Id</th>
@@ -201,6 +220,7 @@
 										<th>Email</th>
 										<th>Relationship</th>
 										<th>Status</th>
+										<th>Party Size</th>
 										<th></th> <!-- Action Column --> 
 									</tr>
 								</thead>
@@ -214,15 +234,16 @@
 										<td><?php echo $results->data[$i]['Email']; ?></td>
 										<td><?php echo $results->data[$i]['Relationship']; ?></td>
 										<td><?php echo $results->data[$i]['AttendingStatus']; ?></td>
+										<td><?php echo $results->data[$i]['PartySize']; ?></td>
 										<td>
-											<a onclick="return viewGuests(<?= $results->data[$i]['FormId']?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
-											<a href="" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-edit"></i> Edit</a> <!-- Edit --> 
-											<a onclick="approveForm(<?=$results->data[$i]['FormId'] ?>);" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
+											<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-info btn-uniform"><i class="fa fa-search-plus"></i> View</a> <!-- Read -->
+											<a onclick="viewAttendeeMessage('<?=$results->data[$i]['FirstName']?>','<?= $results->data[$i]['Message']?>')" class="btn btn-primary btn-uniform" style="padding: 6px 12px;"><i class="fa fa-comment"></i> Message</a> <!-- Message --> 
+											<a onclick="approveForm(<?=$results->data[$i]['FormId']?>,'<?=$results->data[$i]['FirstName']?>','<?=$results->data[$i]['Email']?>');" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
 											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger btn-uniform"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
 										</td>
 									</tr>
-								</tbody>
 								<?php endfor; ?>
+								</tbody>
 							</table>			
 						</div>
 					</div>
@@ -230,6 +251,13 @@
 			</div>
 		</div>
 	</div>
+
+	<script>
+		$(document).ready(function(){
+			$("table").DataTable(); 
+		}); 
+
+	</script>
 </body>
 
 </html>

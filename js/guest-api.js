@@ -21,7 +21,7 @@ $(document).ready(function(){
 	};
 
 	var dialog = new BootstrapDialog({
-		title: "* Please do not include yourself (the main applicant). You will be inserted automatically. Thank You.",
+		title: "* Please do not include yourself (the main applicant) and be sure to save before submitting your RSVP. Thank You.",
 		message: function(dialogRef){
 			if($("#guestTable").length < 1)
 				dialogRef.$modalBody[0].innerHTML = getGuestAPI();		 
@@ -40,8 +40,10 @@ $(document).ready(function(){
 				guests.list.length = 0; 
 				saveGuestList(); 
 				
+				var partyTotal = $("#guestTable > tbody > tr").length; 
+
 				dialogRef.close();
-				$("#guestBtn").text("PARTY OF " + (guests.list.length+1) + " ").append("<i class='fa fa-check'></i>");
+				$("#guestBtn").text("PARTY OF " + (partyTotal +1) + " ").append("<i class='fa fa-check'></i>");
 			}
 		}],
 		autodestroy: false,
@@ -273,7 +275,7 @@ $(document).ready(function(){
 			var first = current.find("input[name='guestfirst[]']").val(); 
 			var last = current.find("input[name='guestlast[]']").val(); 
 			var plusOneType = current.find("select[name='guestplusonetype[]']").val(); 
-			var relation = current.find("select[name='guestrelation[]']").val(); 
+			var relation = current.find("select:visible[name='guestrelation[]']").val(); 
 			var plusOneFirst = plusOneLast = plusOneRelation = $(); 
 
 			if(plusOneType > 1){
@@ -286,8 +288,8 @@ $(document).ready(function(){
 			guests.list.push({
 				"GuestFirst" : first, 
 				"GuestLast" : last, 
-				"PlusOneType" : plusOneType, 
-				"GuestRelation" : relation, 
+				"PlusOneType" : (plusOneType > 0) ? plusOneType : null, 
+				"GuestRelation" : (relation != undefined) ? relation : null, 
 				"PlusOneFirst" : (plusOneFirst.length > 0) ? plusOneFirst : null, 
 				"PlusOneLast" : (plusOneLast.length > 0) ? plusOneLast : null, 
 				"PlusOneRelation" : (plusOneRelation.length > 0) ? plusOneRelation : null
@@ -355,16 +357,8 @@ $(document).ready(function(){
 						guest: guests.list
 					},
                     success: function() {
-                        $("#loader").hide();
-                        $("#success").slideDown("slow");
-                        setTimeout(function() {
-                            $("#success").slideUp("slow");
-                        }, 3000);
-                        document.getElementById("rsvp-form").reset(); 
-						form.reset();	
-						$("#guestTable > tbody").empty(); 	
-						$("#guestBtn").text("ADD GUESTS");
-						saveGuestList(); 			
+						sendPendingEmail(); 
+						resetForm(); 		
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         $("#loader").hide();
@@ -379,6 +373,47 @@ $(document).ready(function(){
             }
 
         });
-    }
+	}
 
+	function resetForm(){
+		document.getElementById("rsvp-form").reset(); 	
+		$("#guestTable > tbody").empty(); 	
+		$("#guestBtn").text("ADD GUESTS");
+		saveGuestList(); 
+
+		$("#loader").hide();
+		$("#success").slideDown("slow");
+		setTimeout(function() {
+			$("#success").slideUp("slow");
+		}, 3000);
+	}
+	
+	/*=========================================
+		SUBMISSION CONFIRMATION EMAIL 
+	===========================================*/
+	function sendPendingEmail(){
+		var email = $("input[name=email]").val(); 
+		var name = $("input[name=first]").val(); 
+		var body = "Dear " + name + ",\n\n"; 
+		body += "Thank you for your pre-RSVP. Your form was processed and is currently being reviewed. \n" + 
+				"We will update you on the status of your RSVP as soon as possible. \n\n" + 
+				"Sincerly, \n" + 
+				"Jackie & Quoc"
+
+		$.ajax({
+			type: "POST",
+			url: "email.php", 
+			data: {
+				"email" : email, 
+				"subject" : "J&Q RSVP", 
+				"body" : body
+			},
+			success: function(response){
+				console.log(response); 
+			},
+			failure: function(response){
+				console.log("unable to send email confirmation.")
+			}
+		});
+	}
 });

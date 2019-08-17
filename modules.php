@@ -115,23 +115,48 @@
 			else 
 				echo "<option value='" . $row["FormStatusId"] . "'>" . $row["Description"] . "</option"; 
 		}
-	
 	}
 
 	function getGuestList($formId){
 		try{
 			$conn = createConnection(); 
 
-			$query = "SELECT PlusOneTypeId, Description FROM PlusOneType"; 
-			$result = mysqli_query($conn, $query); 
-	
-			$options = ""; 
-			while($row = mysqli_fetch_array($result)){
-				$options .= "<option value='" . $row["PlusOneTypeId"] . "'>" . $row["Description"] . "</option>"; 
-			}
+			$colors = ["rgb(123,104,238)", "rgb(152,251,152)", "rgb(240,128,128)",
+					   "rgb(255,218,185)", "rgb(216,191,216)", "rgb(192,192,192)",
+					   "rgb(160,224,208)", "rgb(0,255,255)", "rgb(255,250,205)"];
+			$count = 0; 
 
-			return $guestList; 
+			$query = "CALL GetGuestList(" . $formId . ")";
+			$result = mysqli_query($conn, $query);
+
+			$body .= "<tbody>"; 
+			
+			while($row = mysqli_fetch_array($result)){
+				$body .= "<tr style='background-color:" .  $colors[$count] . ";'>"; 
+				$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["FirstName"] . "'></td>"; 
+				$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["LastName"] . "'></td>"; 
+				$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["PlusOne"] . "'></td>"; 
+				$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["Relation"] . "'></td>"; 
+				$body .= "</tr>"; 
+
+				if($row["PlusOne"] == "Has Plus One"){
+					$body .= "<tr style='background-color:" . $colors[$count] . ";'>";  
+					$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["PlusOneFirstName"] . "'></td>"; 
+					$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["PlusOneLastName"] . "'></td>"; 
+					$body .= "<td></td>"; 
+					$body .= "<td><input type='text' style='text-align:center;' readonly='readonly' value='" . $row["PlusOneRelation"] . "'></td>"; 
+					$body .= "</tr>"; 
+				}
+				
+				$count++; 
+				
+			}
+		
+			$body .= "</tbody>"; 
+
 			$conn->close();
+
+			return $body; 
 		}catch(Exception $e){
 			error_log("caught exception: " . $e->getMessage()); 
 		}
@@ -256,5 +281,39 @@
 		$conn->close(); 
 		
 		error_log("RSVP for attendee no. " . $formId . " have been deleted."); 
+	}
+
+	function validateCredentials($user, $pass){
+		if(!empty($user) || !empty($pass)){
+			$conn = createConnection(); 
+			$query = "SELECT * FROM Account WHERE Username = '$user'"; 
+
+			$result = mysqli_query($conn, $query); 
+
+			// if username exist
+			if(mysqli_num_rows($result) == 1){
+				$row = $result->fetch_assoc();
+
+			 	$id = $row["AccountId"]; 
+			 	$hashed_password = $row["Password"]; 
+
+				// verify password
+			 	if($pass === $hashed_password){
+			 		session_start(); 
+	
+				 	// Store data in session variables
+				 	$_SESSION["loggedin"] = true;
+				 	$_SESSION["id"] = $id;
+				 	$_SESSION["user"] = $user;                            
+						
+				 	// Redirect user to welcome page
+				 	header("location: admin.php");
+				 }
+				 else{
+					 session_destroy(); 
+				 }
+			}
+			$conn->close(); 
+		}
 	}
 ?>

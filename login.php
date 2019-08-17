@@ -1,22 +1,32 @@
+
+<?php
+    require_once 'modules.php'; 
+
+    // Initialize the session
+    session_start(); 
+
+    // Define variables and initialize with empty values
+    $user = $pass = ""; 
+
+    // Check if user is already logged in, if yes, then redirect user to admin page.
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+        header("location: admin.php"); 
+        exit; 
+    }
+
+    if($_SERVER["REQUEST_METHOD"] == "POST"){
+        if(isset($_POST["user"]) && isset($_POST["pass"])){
+            $user = trim($_POST["user"]);
+            $pass = trim($_POST["pass"]); 
+            validateCredentials($user, $pass); 
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
-	<?php
-		require_once 'Facebook/autoload.php';
-		session_start();
-		$fb = new Facebook\Facebook([
-		  'app_id' => '909515306050412', 
-		  'app_secret' => '4d5fa8ed513b69eddb1144e115cb1322',
-		  'default_graph_version' => 'v3.2',
-		  ]);
-		$helper = $fb->getRedirectLoginHelper();
-		
-		$permissions = ['email']; // Optional permissions
-		$loginUrl = $helper->getLoginUrl('https://jandqsayido.com/fb-callback.php', $permissions); 
-	?>
-
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -45,57 +55,76 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
-	
-	<!-- Facebook Login Button --> 
-	<div id="fb-root"></div>
-	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=909515306050412&autoLogAppEvents=1"></script>
 </head>
 
-<body>
-	<!-- start preloader -->
-	<div class="preloader">
-		<div class="inner">
-			<span class="icon"><i class="fi flaticon-two"></i></span>
-		</div>
-	</div>
-	<!-- end preloader -->
+<body id="home">
+    <!-- start page-wrapper -->
+    <div class="page-wrapper">
 
-	<!-- start of hero -->
-	<div class="hero" style="height: 100%">
-		<div class="hero-slider hero-slider-s1">
-			<div class="slide-item">
-				<img src="images/slider/login.jpg" alt class="slider-bg">
-			</div>
-		</div>
-		<div style class="wedding-announcement">
-			<div class="couple-name-merried-text">
-				<h2 class="wow slideInUp" data-wow-duration="1s">Welcome Jackie</h2>
-				<div class="married-text wow fadeIn" data-wow-delay="1s">
-					<h4 class="">
-						<span class=" wow fadeInUp" data-wow-delay="1.05s">P</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.10s">l</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.15s">e</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.20s">a</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.25s">s</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.30s">e</span>
-						<span>&nbsp;</span>						
-						<span class=" wow fadeInUp" data-wow-delay="1.35s">S</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.40s">i</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.45s">g</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.50s">n</span>
-						<span>&nbsp;</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.55s">i</span>
-						<span class=" wow fadeInUp" data-wow-delay="1.65s">n</span>
-					</h4> <br /> <br />
-					<?php
-						echo "<a class='fa fa-facebook btn btn-primary' href='" . htmlspecialchars($loginUrl) . "'> Log in with Facebook!</a></button>";
-					?>
-				</div>
-			</div>
-		</div>
-	</div>
-	<!-- end of hero slider -->
+        <!-- start preloader -->
+        <div class="preloader">
+            <div class="inner">
+                <span class="icon"><i class="fi flaticon-two"></i></span>
+            </div>
+        </div>
+        <!-- end preloader -->
 
+        <!-- start of hero -->
+        <section class="hero" style="height: calc(100vh);">
+            <div class="hero-slider hero-slider-s1">
+                <div class="slide-item">
+                    <img src="images/slider/login.jpg"  class="slider-bg">
+                </div>
+			</div>
+			
+            <div class="wedding-announcement">
+                <div class="couple-name-merried-text">
+                    <h2 class="wow slideInUp" data-wow-duration="1s">J & Q Administration</h2>
+                    <div class="married-text wow fadeIn" data-wow-delay="1s">
+                        <h4>
+                            <span class="wow fadeInUp" data-wow-delay="1.05s">P</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.10s">l</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.15s">e</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.20s">a</span>
+							<span class="wow fadeInUp" data-wow-delay="1.25s">s</span>
+							<span class="wow fadeInUp" data-wow-delay="1.30s">e</span>
+                            <span>&nbsp;</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.35s">L</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.40s">o</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.45s">g</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.50s">i</span>
+                            <span class="wow fadeInUp" data-wow-delay="1.55s">n</span>
+                        </h4>
+					</div>
+					
+					<br /> <br />
+					<form class="form" method="post" action="<?='login.php'?>">
+						<div class="container form-group" align="center">
+							<div class="row" style="width: 25%;">
+                                <div class="col col-sm-12 wow fadeInUp" data-wow-delay="1.70s" style="margin-bottom: 10px;"> 
+                                    <input type="text" name="user" class="form-control" placeholder="User Name*" value="">
+                                </div> 
+                                <div class="col col-sm-12 wow fadeInUp" data-wow-delay="1.70s" style="margin-bottom: 10px;">
+                                    <input type="password" name="pass" class="form-control" placeholder="Password*" value="">
+                                </div> 
+                                <div class="col col-sm-12 wow fadeInUp" data-wow-delay="2.10s">
+                                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                                </div>
+                                <div hidden class="col col-md-12 success-error-message" style="width: 50%;">
+                                    <div id="error"> Incorrect Login Credentials. </div>
+                                </div>
+							</div>
+						</div>
+					</form>
+                </div>
+			</div>
+        </section>
+        <!-- end of hero slider -->
+    </div>
+    <!-- end of page-wrapper -->
+</body>
+
+<footer>
     <!-- All JavaScript files
     ================================================== -->
     <script src="js/jquery.min.js"></script>
@@ -106,4 +135,6 @@
 
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>
-</body>
+</footer>
+
+</html>

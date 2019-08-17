@@ -28,8 +28,8 @@
 		addGuest(
 			$guest["GuestFirst"],
 			$guest["GuestLast"],
-			$guest["GuestRelation"],
-			$guest["PlusOneType"], 
+			(!empty($guest["GuestRelation"])) ? $guest["GuestRelation"] : null,
+			(!empty($guest["PlusOneType"])) ? $guest["PlusOneType"] : null, 
 			$attendeeId, 
 			$plusOneId 
 		); 
