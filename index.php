@@ -2,9 +2,10 @@
 <html lang="en">
 
 <head>
-	<?php
-		require_once "modules.php";
-	?>
+    <?php
+        require_once 'modules.php'; 
+    ?>
+
     <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +15,6 @@
     <title> Jackie And Quoc </title>
 
     <!-- Icon fonts -->
-    <link href="css/font-awesome.min.css" rel="stylesheet">
 	<link href="css/font-waltograph.css" rel="stylesheet">
     <link href="css/flaticon.css" rel="stylesheet">
 
@@ -33,6 +33,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/style.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/f7faeccf2c.js" crossorigin="anonymous"></script>
 
 </head>
 
@@ -729,64 +730,35 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="section-title-white row">
+                    <span style="color: white">
+                        Please RSVP before May 5th, 2020. Your passcode will be provided on your physical invitation. 
+                        If you forgot/lost your passcode or found an issue with your rsvp form, please contact us.          
+                    </span>    
+                </div>
                 <!-- end section-title -->
 
-                <div class="row content">
-                    <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                        <p>
-							<!-- Please reserve before May 5th, 2020. Your passcode will be provided on your physical invitation.  -->
-							<!-- If you forgot/lost your passcode, please contact us for a new one.  -->
-                            We know that our special day seems like it is worlds away, but please fill our this pre-RSVP 
-                            form to let us know if you are interested in attending. We know that plans change all the time, 
-                            and this is not a real RSVP. We would just like an idea of who is all able to spend the best day 
-                            ever with us. <br> <br>
-
-							* Please note that any plus ones are subject to approval by the bride and groom. 
-							You will be notified via email or text on the status of your plus one.          
-						</p>
-                        <form id="rsvp-form" class="form validate-rsvp-form row" method="post">
-							<div>
-								<div class="col col-sm-6">
-									<input type="text" name="first" class="form-control" placeholder="First Name*">
-								</div>
-								<div class="col col-sm-6">
-									<input type="text" name="last" class="form-control" placeholder="Last Name*">
-								</div>
-								<div class="col col-sm-6">
-									<input type="email" name="email" class="form-control" placeholder="Email">
-								</div>
-								<div class="col col-sm-6">
-									<input type="tel" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" class="form-control" placeholder="Phone Number*">
-								</div>					
-								<div class="col col-sm-6">
-									<?php
-										getRelationDropdown(); 
-									?>
-								</div>								
-								<div class="col col-sm-6">
-									<?php
-										getAttendingStatusDropdown(); 
-									?>
-								</div>
-								<div class="col col-sm-12">
-									<textarea class="form-control" name="message" placeholder="Leave a message for the bride and groom..."></textarea>
-                                </div>		
-                                <div class="col col-sm-6" align="center">    
-                                    <button id="guestBtn" class="btn-primary btn-uniform">ADD PARTY MEMBERS</button>
-                                </div>					
-								<div class="col col-sm-6">
-									<button type="submit" class="submit">CONFIRM</button>
-									<span id="loader"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
-								</div>
-								<div class="col col-md-12 success-error-message">
-									<div id="success">Thank you</div>
-									<div id="error"> Error occurred while sending email. Please try again later. </div>
+                <div id="rsvp-form">
+                    <form id="rsvp-form-passcode" class="form validate-rsvp-form row">
+                        <div class="row content">
+                            <div class="col col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                                <div class="col" required>
+                                    <input type="password" name="passcode" class="form-control" placeholder="Passcode*">
                                 </div>
-							</div> 
-                        </form>
-                    </div>
+                                <div align="center" class="col col-md-12 submit-btn">
+                                    <button type="submit">CONFIRM</button>
+                                    <span id="loader"><i class="fa fa-refresh fa-spin fa-3x fa-fw"></i></span>
+                                </div>
+                                <div class="col col-md-12 success-error-message">
+                                    <div id="error">Passcode not found.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                    </form>
                 </div>
-                <!-- end row -->
+                <!-- end form -->
             </div>
             <!-- end container -->
         </section>
@@ -815,36 +787,55 @@
 						</p>
 
                         <a href="https://drive.google.com/uc?export=view&id=1Qf-JahOmuAwZ1tAv3zg6der_hKE4WycL">
-                            <strong>Click here to see map </strong><i class="fa fa-angle-right"></i>
+                            <u><strong>Click here to see map </strong></u><i class="fa fa-angle-right"></i>
                         </a>
                     </div>
                     <div class="col col-md-6">
                         <h3>Accommodations</h3>
                         <p> 
 							There are many hotels around the Disneyland Resort that are affordable and close by. We do not have any room blocks reserved, 
-							however, we highly recommend booking the rooms from the hotels below (be sure to book rooms in advanced as the hotels around Disneyland 
-							tend to book fairly quick). 
+                            however, we highly recommend booking the rooms in advance from the hotels below (they tend to book fairly quickly). 
 						</p> <br /> 
 						<div class="gif-registration-slider">
                             <div style="border-style: outset;" class="register">
-                                <img src="images/accommodations/eden_roc.jpg" alt class="img img-responsive">
+                                <a href="https://www.edenrocanaheim.com/">
+                                    <img src="images/accommodations/eden_roc.jpg" alt class="img img-responsive">
+                                </a>
                             </div>
                             <div style="border-style: outset;" class="register">
-                                <img src="images/accommodations/indigo.jpg" alt class="img img-responsive">
+                                <a href="https://www.ihg.com/hotelindigo/hotels/us/en/reservation">
+                                    <img src="images/accommodations/indigo.jpg" alt class="img img-responsive">
+                                </a>
                             </div>
                             <div style="border-style: outset;" class="register">
-                                <img src="images/accommodations/la_quinta.jpg" alt class="img img-responsive">
+                                <a href="https://www.wyndhamhotels.com/laquinta">
+                                    <img src="images/accommodations/la_quinta.jpg" alt class="img img-responsive">
+                                </a>
                             </div>
                             <div style="border-style: outset;" class="register">
-                                <img src="images/accommodations/howard_johnson.jpg" alt class="img img-responsive">
+                                <a href="https://www.hojoanaheim.com/">
+                                    <img src="images/accommodations/howard_johnson.jpg" alt class="img img-responsive">
+                                </a>
                             </div>
                             <div style="border-style: outset;" class="register">
-                                <img src="images/accommodations/disney_resort.jpg" alt class="img img-responsive">
+                                <a href="https://disneyland.disney.go.com/hotels/">
+                                    <img src="images/accommodations/disney_resort.jpg" alt class="img img-responsive">
+                                </a>
                             </div>								
                         </div>
                     </div>
                 </div>
-                <!-- end row -->
+                <!-- end row content-->
+                <div class="row" style="padding-top: 20px;">
+                    <span style="color: white;" align="center">
+                        * For those who want to stay at the Disneyland Resort, you may book rooms at a <em>discounted rate</em> 
+                        <a href="https://www.mydisneygroup.com/ichj20b"><u><strong>here</strong></u></a> (subject to availability).
+                        You may also book over the phone at <em>(714) 520-5005.</em>
+                        The bride and groom will be staying at the Disneyland Hotel the day prior to the wedding and at the Disney's 
+                        Grand California Hotel on the night of the wedding.
+                    </span>
+                </div>
+                <!-- end row --> 
             </div>
             <!-- end container -->
         </section>
@@ -916,7 +907,7 @@
 
     <!-- Custom script for this template -->
     <script src="js/script.js"></script>
-	<script src="js/guest-api.js"></script>	
+    <script src="js/crud.js"></script>
 </body>
 
 </html>

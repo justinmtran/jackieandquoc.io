@@ -242,3 +242,14 @@
     position: relative;
     z-index: 1;
 }
+
+/* Position Carousel navigation buttons to the side.  */ 
+.owl-prev, .owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: block !important;
+    border:0px solid black;
+}
+.owl-prev { left: -30px; }
+.owl-next { right: -30px; }

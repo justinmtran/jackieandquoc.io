@@ -4,6 +4,6 @@
 
 	if( isset( $_POST['formId'] ) ) {
 		$formId = $_POST['formId']; 
-		denyRSVP($formId); 
+		pendRSVP($formId); 
 	}
 ?>

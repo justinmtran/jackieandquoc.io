@@ -498,12 +498,14 @@
         $('.gif-registration-slider').owlCarousel({
             items: 3,
             dots: false,
-            autoplay: true,
-            autoplayTimeout: 3000,
+            autoplay: false,
+            /*autoplayTimeout: 3000,*/
             smartSpeed: 1000,
             loop: true,
             margin: 20,
             stagePadding: 10,
+            nav: true,
+            navText : ['<i class="fa fa-angle-left" aria-hidden="true"></i>','<i class="fa fa-angle-right" aria-hidden="true"></i>'],
             responsive: {
                 0: {
                     items: 1
@@ -683,6 +685,101 @@
     });
 
 })(window.jQuery);
+
+
+var party_options = { list: []};
+
+/*------------------------------------------
+    = RSVP PASSCODE FORM
+-------------------------------------------*/
+if ($("#rsvp-form-passcode").length){ 
+    $("#rsvp-form-passcode").validate({
+        rules: {
+            passcode: {
+                required: true
+            }
+        },
+        messages: {
+            passcode: "Please enter a passcode"
+        },
+        submitHandler: function(form) {
+            $("#loader").css("display", "inline-block");
+            $.ajax({
+                type: "post",
+                url: "rsvp.php",
+                data: {
+                    passcode : $("input[name='passcode']").val()
+                },
+                success: function(response) {
+                    if(!$.trim(response)){
+                        failure(); 
+                    }else{
+                        $("#rsvp-form").html(response); 
+                        // add submit handler to new form 
+                        $("#rsvp-form-status").submit(function(e){
+                            e.preventDefault(); 
+                            $("#loader").css("display", "inline-block");
+                            savePartyOptions(); 
+
+                            $.ajax({
+                                type: "post",
+                                url: "edit.php",
+                                data: {
+                                    party_option : party_options.list, 
+                                    dietaryRestriction : $("textarea[name=dietaryRestriction]").val().replace("'", ""), 
+                                    attendeeId : $("input[name=attendeeId]").val(),
+                                },
+                                success: function() {
+                                    success();  
+                                },
+                                error: function(jqXHR, textStatus, errorThrown) {
+                                    alert("There was an issue with the Network. Please try again later.");
+                                }
+                            });
+                        });
+                    }		
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    alert("There was an issue with the Network. Please try again later.");
+                }
+            });
+            
+            return false; // required to block normal submit since you used ajax
+        }
+    });
+}
+ 
+function savePartyOptions(){
+	var rows = $("#rsvp-form-status").find("table > tbody > tr"); 
+
+	for(var i = 0; i < rows.length; i++){
+        var attendeeInfoId = rows.eq(i).find('td')[0].innerText; 
+        var attendingStatusId = rows.eq(i).find('td').eq(3).find('select').val(); 
+        var mealId = rows.eq(i).find('td').eq(4).find('select').val(); 
+
+		party_options.list.push({
+			"AttendeeInfoId" : attendeeInfoId, 
+			"MealId" : mealId,
+			"AttendingStatusId" : attendingStatusId
+		}); 
+	}
+}
+
+function success(){
+    $("#loader").hide();
+    $("#success").slideDown("slow");
+    setTimeout(function() {
+        $("#success").slideUp("slow");
+    }, 7000);
+}
+
+function failure(){
+    $("#loader").hide();
+    $("#error").slideDown("slow");
+    setTimeout(function() {
+        $("#error").slideUp("slow");
+    }, 7000);
+}
 
 /*=========================================
 	ADMIN PAGE

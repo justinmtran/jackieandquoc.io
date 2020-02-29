@@ -20,8 +20,8 @@ $(document).ready(function(){
 		] 
 	};
 
-	var dialog = new BootstrapDialog({
-		title: "* Please do not include yourself (the main applicant) and be sure to save before submitting your RSVP. Thank You.",
+	var guestDialog = new BootstrapDialog({
+		title: "* Do not include the main applicant and be sure to save before submitting the RSVP form.",
 		message: function(dialogRef){
 			if($("#guestTable").length < 1)
 				dialogRef.$modalBody[0].innerHTML = getGuestAPI();		 
@@ -50,15 +50,16 @@ $(document).ready(function(){
 		onshown: function(){
 			if($("#guestTable > tbody > tr").length < 1){
 				addRow(); 
-			}
-				
+			}		
 		}
-	});
- 
+	}); 
+
 	var guestBtn = $("#guestBtn").click(function(e){
 		e.preventDefault(); 
-		dialog.open(); 
-	});
+		guestDialog.open(); 
+	}); 
+
+
 
 	///////////////
 	// FUNCTIONS //
@@ -327,9 +328,6 @@ $(document).ready(function(){
 				},
 				relationship:  {
 					required: true
-				},
-				phone: {
-					required: true
 				}
             },
 
@@ -351,21 +349,15 @@ $(document).ready(function(){
                         last: $("input[name=last]").val(),
                         phone : $("input[name=phone]").val(),
                         email : $("input[name=email]").val(), 
-                        attendstatus : $("select[name=attendstatus]").val(),
                         relationship : $("select[name=relationship]").val(),
-                        message : $("textarea[name=message]").val(),
 						guest: guests.list
 					},
                     success: function() {
-						sendPendingEmail(); 
+						//sendPendingEmail(); 
 						resetForm(); 		
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
-                        $("#loader").hide();
-                        $("#error").slideDown("slow");
-                        setTimeout(function() {
-                            $("#error").slideUp("slow");
-                        }, 3000);
+                        failure(); 
                     }
                 });
 				
@@ -381,10 +373,22 @@ $(document).ready(function(){
 		$("#guestBtn").text("ADD GUESTS");
 		saveGuestList(); 
 
+		success(); 
+	}
+
+	function success(){
 		$("#loader").hide();
 		$("#success").slideDown("slow");
 		setTimeout(function() {
 			$("#success").slideUp("slow");
+		}, 3000);
+	}
+	
+	function failure(){
+		$("#loader").hide();
+		$("#error").slideDown("slow");
+		setTimeout(function() {
+			$("#error").slideUp("slow");
 		}, 3000);
 	}
 	
@@ -395,8 +399,8 @@ $(document).ready(function(){
 		var email = $("input[name=email]").val(); 
 		var name = $("input[name=first]").val(); 
 		var body = "Dear " + name + ",\n\n"; 
-		body += "Thank you for your pre-RSVP. Your form was processed and is currently being reviewed. \n" + 
-				"We will update you on the status of your RSVP as soon as possible. \n\n" + 
+		body += "Your RSVP form is now pending for you to complete and review at https://www.jandqsayido.com. \n" + 
+				"To view your form, enter your passcode (provided on your invitation) in the 'RSVP' section of our website.  \n\n" + 
 				"Sincerly, \n" + 
 				"Jackie & Quoc"
 

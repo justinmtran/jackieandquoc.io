@@ -9,9 +9,7 @@
 		$_POST["last"], 
 		$_POST["phone"],
 		$_POST["email"], 
-		$_POST["attendstatus"],
-		$_POST["relationship"],
-		$_POST["message"]
+		$_POST["relationship"]
 	);
 
 	foreach($list as $guest){

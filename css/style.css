@@ -3470,7 +3470,7 @@ a:focus {
     text-align: center;
 }
 
-.rsvp-section .form .submit-btn button {
+.submit-btn button{
     background-color: #5e9a8e;
     height: 45px;
     line-height: 45px;
@@ -3503,7 +3503,7 @@ a:focus {
     }
 }
 
-.rsvp-section .form .submit-btn button:hover {
+.submit-btn button:hover {
     background-color: #4b7a71;
 }
 
@@ -4147,3 +4147,14 @@ a:focus {
 /*--------------------------------------------------------------
 #14.0 	custom classes and id
 ----------------------------------------------------------------*/
+#rsvp-form-status th {
+    color: white; 
+}
+
+#rsvp-form-status span {
+    color: white; 
+}
+
+#rsvp-form-status table {
+    background-color: rgba(255,255,255,0.2)
+}
