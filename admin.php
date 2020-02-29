@@ -148,7 +148,7 @@
 										<td><?php echo $results->data[$i]['PartySize']; ?></td>
 										<td><?php echo $results->data[$i]['Passcode']; ?> </td>
 										<td>
-											<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-primary btn-uniform"><i class="fa fa-search-plus"></i> Guests</a> <!-- Read Guest list -->
+											<!--<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-primary btn-uniform"><i class="fa fa-search-plus"></i> Guests</a>--> <!-- Read Guest list -->
 											<a onclick="viewPartyOptions('<?= $results->data[$i]['Passcode'] ?>', '<?= $results->data[$i]['Message'] ?>')" class="btn btn-info btn-uniform"><i class="fas fa-utensils"></i> Options</a> <!-- Read Party Options -->
 											<a onclick="approveForm(<?=$results->data[$i]['FormId']?>,'<?=$results->data[$i]['FirstName']?>','<?=$results->data[$i]['Email']?>');" class="btn btn-success btn-uniform"><i class="fa fa-check"></i> Approve</a> <!-- Approve --> 
 											<a onclick="return deleteForm(<?=$results->data[$i]['FormId'] ?>)" class="btn btn-danger btn-uniform"><i class="fa fa-trash"></i> Delete</a> <!-- Delete -->
@@ -193,7 +193,7 @@
 										<td><?php echo $results->data[$i]['PartySize']; ?></td>
 										<td><?php echo $results->data[$i]['Passcode']; ?></td>
 										<td>
-											<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-primary btn-uniform"><i class="fa fa-search-plus"></i> Guests</a> <!-- Read Guest list -->
+											<!--<a onclick="viewGuests(<?= $results->data[$i]['FormId'] ?>)" class="btn btn-primary btn-uniform"><i class="fa fa-search-plus"></i> Guests</a>--> <!-- Read Guest list -->
 											<a onclick="viewPartyOptions('<?= $results->data[$i]['Passcode'] ?>', '<?= $results->data[$i]['Message'] ?>')" class="btn btn-info btn-uniform"><i class="fas fa-utensils"></i> Options</a> <!-- Read Party Options -->
 											<a onclick="pendForm(<?= $results->data[$i]['FormId']?>)" class="btn btn-warning btn-uniform"><i class="fa fa-undo"></i> Re-Pend</a> <!-- Re-Pend -->
 										</td>

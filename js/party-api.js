@@ -354,7 +354,8 @@ $(document).ready(function(){
 					},
                     success: function() {
 						//sendPendingEmail(); 
-						resetForm(); 		
+						resetForm(); 	
+						guests.list.length = 0;
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         failure(); 
